@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/clock247/static/css/main.9a08250b.css",
+    "main.js": "/clock247/static/js/main.967a77f1.js",
+    "static/js/488.709c8670.chunk.js": "/clock247/static/js/488.709c8670.chunk.js",
+    "service-worker.js": "/clock247/service-worker.js",
+    "index.html": "/clock247/index.html",
+    "main.9a08250b.css.map": "/clock247/static/css/main.9a08250b.css.map",
+    "main.967a77f1.js.map": "/clock247/static/js/main.967a77f1.js.map",
+    "488.709c8670.chunk.js.map": "/clock247/static/js/488.709c8670.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9a08250b.css",
+    "static/js/main.967a77f1.js"
+  ]
+}
