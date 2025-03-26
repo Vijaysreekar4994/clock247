@@ -3,7 +3,7 @@ import './App.css';
 import {
   getFormattedTime,
   getFormattedDate,
-  getFormattedAlarmTime,
+  // getFormattedAlarmTime,
   requestWakeLock,
   releaseWakeLock,
   requestFullScreen,
@@ -178,8 +178,7 @@ function App() {
 
   useEffect(() => {
     requestWakeLock(wakeLockRef, handleVisibilityChange);
-    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-    isMobile && requestFullScreen()
+    requestFullScreen()
     const now = new Date();
     const todayStr = now.toISOString().split('T')[0];
     const nowHour = now.getHours();

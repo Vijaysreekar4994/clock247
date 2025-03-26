@@ -45,8 +45,36 @@ export const releaseWakeLock = async (wakeLockRef, handleVisibilityChange) => {
     document.removeEventListener('visibilitychange', handleVisibilityChange);
 };
 
-export const requestFullScreen = () => {
-    const el = document.documentElement;
-    const request = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
-    if (request) request.call(el);
+// Utility to detect mobile or tablet
+const isTouchDevice = () => {
+    return (
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints > 0 ||
+      navigator.msMaxTouchPoints > 0
+    );
   };
+  
+  const isMobileOrTablet = () => {
+    const ua = navigator.userAgent;
+    return (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua) ||
+      isTouchDevice()
+    );
+  };
+  
+  // Exported fullscreen function
+  export const requestFullScreen = () => {
+    const el = document.documentElement;
+    const request =
+      el.requestFullscreen ||
+      el.webkitRequestFullscreen ||
+      el.mozRequestFullScreen ||
+      el.msRequestFullscreen;
+  
+    if (request && isMobileOrTablet() && !document.fullscreenElement) {
+      request.call(el).catch((err) => {
+        console.warn('Fullscreen error:', err.message);
+      });
+    }
+  };
+  
