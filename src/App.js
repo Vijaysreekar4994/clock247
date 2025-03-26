@@ -6,7 +6,7 @@ import {
   // getFormattedAlarmTime,
   requestWakeLock,
   releaseWakeLock,
-  requestFullScreen,
+  // requestFullScreen,
 } from './useAlarmUtils';
 import { saveAlarms, loadAlarms } from './localStorageServices';
 
@@ -17,6 +17,7 @@ const alarmSounds = [
 ];
 
 function App() {
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const [dateTime, setDateTime] = useState(new Date());
   const [alarms, setAlarms] = useState([]);
   const [isAlarmActive, setIsAlarmActive] = useState(false);
@@ -51,6 +52,27 @@ function App() {
   //   setEditingIndex(index);
   //   setIsModalOpen(true);
   // };
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
+
+  const toggleFullscreen = () => {
+    const el = document.documentElement;
+    const request = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
+    const exit = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen;
+
+    if (!document.fullscreenElement && request) {
+      request.call(el).catch(err => console.warn('❌ Fullscreen error:', err.message));
+    } else if (document.fullscreenElement && exit) {
+      exit.call(document).catch(err => console.warn('❌ Exit fullscreen error:', err.message));
+    }
+  };
 
   const handleNoteChange = (e) => {
     const value = e.target.value;
@@ -178,7 +200,6 @@ function App() {
 
   useEffect(() => {
     requestWakeLock(wakeLockRef, handleVisibilityChange);
-    requestFullScreen()
     const now = new Date();
     const todayStr = now.toISOString().split('T')[0];
     const nowHour = now.getHours();
@@ -386,6 +407,26 @@ function App() {
             </div>
           )
         }
+        <button
+          onClick={toggleFullscreen}
+          style={{
+            position: 'fixed',
+            bottom: '20px',
+            left: '20px',
+            zIndex: 9999,
+            padding: '10px',
+            border: 'none',
+            borderRadius: '6px',
+            background: 'transparent',
+            color: '#ccc',
+            fontSize: '20px',
+            boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+            cursor: 'pointer'
+          }}
+          title={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
+        >
+          ⛶
+        </button>
       </div>
     </div >
   );
