@@ -8,7 +8,7 @@ export const getFormattedDate = (date) =>
     date.toLocaleDateString('en-GB', {
         day: '2-digit',
         month: 'short',
-        year: 'numeric',
+        // year: 'numeric',
         weekday: 'short',
     }).replace(/(\w+), (\d+) (\w+) (\d+)/, '$2 $3 $4, $1');
 

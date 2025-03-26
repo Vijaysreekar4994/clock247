@@ -21,6 +21,7 @@ function App() {
   const [isAlarmActive, setIsAlarmActive] = useState(false);
   const [inputTime, setInputTime] = useState('');
   const [alarmNote, setAlarmNote] = useState('');
+  // const [editingIndex, setEditingIndex] = useState(null);
   const [selectedDays, setSelectedDays] = useState([]);
   const [specificDate, setSpecificDate] = useState('');
   const [selectedSound, setSelectedSound] = useState(alarmSounds[0].value);
@@ -38,6 +39,17 @@ function App() {
   const date = getFormattedDate(dateTime);
 
   const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  // const handleEditAlarm = (index) => {
+  //   const alarm = alarms[index];
+  //   setInputTime(`${alarm.hour.toString().padStart(2, '0')}:${alarm.minute.toString().padStart(2, '0')}`);
+  //   setSelectedDays(alarm.days || []);
+  //   setSpecificDate(alarm.date || '');
+  //   setSelectedSound(alarm.sound || alarmSounds[0].value);
+  //   setAlarmNote(alarm.note || '');
+  //   setEditingIndex(index);
+  //   setIsModalOpen(true);
+  // };
 
   const handleNoteChange = (e) => {
     const value = e.target.value;
@@ -130,7 +142,14 @@ function App() {
       sound: selectedSound,
       note: alarmNote.trim()
     };
+
     const updatedAlarms = [...alarms, newAlarm];
+    // if (editingIndex !== null) {
+    //   updatedAlarms[editingIndex] = newAlarm;
+    // } else {
+    //   updatedAlarms.push(newAlarm);
+    // }
+
     setAlarms(updatedAlarms);
     saveAlarms(updatedAlarms);
     setInputTime('');
@@ -138,6 +157,7 @@ function App() {
     setSpecificDate('');
     setSelectedSound(alarmSounds[0].value);
     setAlarmNote('');
+    // setEditingIndex(null);
   };
 
   const isAlarmMatch = (alarm, now) => {
@@ -300,12 +320,11 @@ function App() {
                   <div className='saved-alarm' key={index}>
                     <span style={{ fontSize: '40px' }}>
                       {alarm.hour.toString().padStart(2, '0')}:{alarm.minute.toString().padStart(2, '0')}
-                      {alarm.days.length !== 0 && ' 🔄'}
                     </span>
                     <h2 className='saved-alarm-info'>
                       {alarm.days.length !== 0 && (
                         <>
-                          Repeat: {alarm.days}
+                          Repeat: {alarm.days.join(', ')}
                           <br />
                         </>
                       )}
@@ -320,13 +339,17 @@ function App() {
                           Note: {alarm.note}<br />
                         </>
                       )}
-                      Sound: {alarm.sound}<br />
+                      {/* Sound: {alarm.sound}<br /> */}
                     </h2>
                     {/* Alarm: {alarm.hour.toString().padStart(2, '0')}:{alarm.minute.toString().padStart(2, '0')} |
                       Days: {alarm.days.join(', ')} |
                       Date: {alarm.date || 'N/A'} |
                       Sound: {alarm.sound} */}
-                    <button className='delete-alarm-button' onClick={() => deleteAlarm(index)}><span>&#10060;</span></button>
+                    <div className='alarm-action-buttons-view'>
+                      <button className='delete-alarm-button' onClick={() => deleteAlarm(index)}><span>&#10060;</span></button>
+                      {/* <button className='edit-alarm-button' onClick={() => handleEditAlarm(index)}><span>✏️</span></button> */}
+                    </div>
+
                   </div>
                 ))
               ) : (
