@@ -6,6 +6,7 @@ import {
   getFormattedAlarmTime,
   requestWakeLock,
   releaseWakeLock,
+  requestFullScreen,
 } from './useAlarmUtils';
 import { saveAlarms, loadAlarms } from './localStorageServices';
 
@@ -177,7 +178,8 @@ function App() {
 
   useEffect(() => {
     requestWakeLock(wakeLockRef, handleVisibilityChange);
-
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+    isMobile && requestFullScreen()
     const now = new Date();
     const todayStr = now.toISOString().split('T')[0];
     const nowHour = now.getHours();

@@ -44,3 +44,9 @@ export const releaseWakeLock = async (wakeLockRef, handleVisibilityChange) => {
     }
     document.removeEventListener('visibilitychange', handleVisibilityChange);
 };
+
+export const requestFullScreen = () => {
+    const el = document.documentElement;
+    const request = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
+    if (request) request.call(el);
+  };
