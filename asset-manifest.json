@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/clock247/static/css/main.a25d4d1c.css",
-    "main.js": "/clock247/static/js/main.0f4c91df.js",
+    "main.css": "/clock247/static/css/main.5704e1ff.css",
+    "main.js": "/clock247/static/js/main.910867c9.js",
     "static/js/488.709c8670.chunk.js": "/clock247/static/js/488.709c8670.chunk.js",
     "service-worker.js": "/clock247/service-worker.js",
     "index.html": "/clock247/index.html",
-    "main.a25d4d1c.css.map": "/clock247/static/css/main.a25d4d1c.css.map",
-    "main.0f4c91df.js.map": "/clock247/static/js/main.0f4c91df.js.map",
+    "main.5704e1ff.css.map": "/clock247/static/css/main.5704e1ff.css.map",
+    "main.910867c9.js.map": "/clock247/static/js/main.910867c9.js.map",
     "488.709c8670.chunk.js.map": "/clock247/static/js/488.709c8670.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a25d4d1c.css",
-    "static/js/main.0f4c91df.js"
+    "static/css/main.5704e1ff.css",
+    "static/js/main.910867c9.js"
   ]
 }
