@@ -7,9 +7,9 @@ export const getFormattedTime = (date) =>
 export const getFormattedDate = (date) =>
     date.toLocaleDateString('en-GB', {
         day: '2-digit',
+        weekday: 'short',
         month: 'short',
         // year: 'numeric',
-        weekday: 'short',
     }).replace(/(\w+), (\d+) (\w+) (\d+)/, '$2 $3 $4, $1');
 
 export const getFormattedAlarmTime = (alarmTime) =>

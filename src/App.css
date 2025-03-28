@@ -4,48 +4,79 @@
   width: 100%;
   height: 100%;
   color: white;
-  font-family: monospace;
+  font-family: sans-serif !important;
   overflow-y: scroll;
+  user-select: none;
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
 }
 
 .container-1 {
   display: flex;
   flex: 1;
   flex-direction: row;
-  padding: 20px;
+  padding: 0px 20px;
+  /* border-bottom:1px solid gray ; */
 }
 
-.date-time-container {
+.container-1-left-pane {
   display: flex;
   flex: 4;
   flex-direction: column;
+  white-space: nowrap;
+  padding-right: 15px;
+  /* background-color: #cccccc89; */
 }
 
-.add-alarm-view {
+.container-1-right-pane {
   display: flex;
-  flex: 1;
-  justify-content: flex-end;
+  flex: 4;
+  flex-direction: row;
+  width: 100%;
+  /* justify-content: flex-end; */
+  /* background-color: #cccccc1d; */
+}
+
+.weather-refresh-button {
+  padding: 10px 20px 0px 20px;
+  /* width: ; */
+  height: fit-content;
+  border: none;
+  border-radius: 6px;
+  /* background: #7b1a1aba; */
+  background: transparent;
+  color: #ccc;
+  cursor: 'pointer';
 }
 
 .add-alarm-button {
-  width: 200px;
+  width: 100px;
   height: 80px;
-  font-size: 30px;
+  border-radius: 30px;
 }
 
-.time {
-  font-size: 10rem;
+.b {
   font-weight: bold;
 }
+.text1 {
+  font-size: 10rem;
+}
 
-.date {
+.text2 {
   font-size: 6rem;
+}
+.text3 {
+  font-size: 4rem;
+}
+.text4 {
+  font-size: 2rem;
+}
+.text5 {
+  font-size: 1rem;
 }
 
 .container-2 {
@@ -55,32 +86,41 @@
   /* height: 100vh; */
 }
 
-.left-pane,
-.right-pane {
+.container-2-left-pane,
+.container-2-right-pane {
   width: 50%;
-  padding: 10px;
+  padding: 20px;
   box-sizing: border-box;
 }
 
-.left-pane {
+.container-2-left-pane {
+  /* border-right:1px solid gray ; */
   display: flex;
   flex-direction: column;
+}
+
+.pane-heading-view{
+  /* background-color: #282c34; */
+  display: flex;
+  align-items: center;
+  /* flex-direction: row; */
+  justify-content: space-between;
+  button {
+    font-size: 1.5rem;
+  }
+}
+
+.container-2-right-pane {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 50vh;
 }
 
 .notes-section {
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
-
-.notes-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.notes-header h2 {
-  margin: 0;
 }
 
 .notes-textarea {
@@ -90,7 +130,7 @@
   resize: none;
   overflow-wrap: break-word;
   white-space: pre-wrap;
-  font-size: 20px;
+  font-size: 1.5rem;
   padding: 10px;
   box-sizing: border-box;
   border: 1px solid #ccc;
@@ -105,29 +145,41 @@
   border: 1px solid lightgray;
   border-radius: 10px;
   margin-bottom: 10px;
-  padding: 5px 10px ;
+  padding: 5px 10px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 
-  .saved-alarm-info{
-    width: 50%;
+  .saved-alarm-info {
+    /* width: 50%; */
+    padding-left: 20px;
   }
 
 }
-.alarm-action-buttons-view {
+
+.fullscreen-button-view {
+  /* background: #cccccc1b; */
   display: flex;
-  flex-direction: column;
+  justify-content: flex-end;
+
 }
-.delete-alarm-button {
-  border-radius: 5px;
-  padding: 5px 10px;
-  /* margin-bottom: 10px;  TODO: to add again with edit feature */ 
+.fullscreen-button {
+  /* position: fixed; */
+  /* bottom: 20px;
+  left: 20px; */
+  /* z-index: 999; */
+  padding: 20px;
+  width: fit-content;
+  height: fit-content;
+  border: none;
+  border-radius: 6px;
+  /* background: #cccccc1b; */
+  background: transparent;
+  color: #ccc;
+  cursor: 'pointer';
 }
-.edit-alarm-button{
-  border-radius: 5px;
-  padding: 5px 10px;
-}
+
+
 
 @keyframes pulse {
   0% {
@@ -143,7 +195,7 @@
   }
 }
 
-.day-selection input[type="checkbox"] {
+/* .day-selection input[type="checkbox"] {
   width: 20px;
   height: 20px;
   cursor: pointer;
@@ -152,12 +204,48 @@
 .day-selection label {
   display: inline-flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 1rem;
   border: 1px solid lightgray;
   border-radius: 10px;
   margin: 5px;
   padding-right: 5px;
+} */
+
+/* === DAY SELECTION STYLE LIKE IMAGE === */
+.day-selection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px;
 }
+
+.day-selection input[type="checkbox"] {
+  display: none;
+}
+
+.day-selection label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #000000; /* blue border */
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  color: #322f2f;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+.day-selection input[type="checkbox"]:checked + label {
+  background-color: #eeff00; /* blue fill */
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+
 
 .modal-overlay {
   position: fixed;
@@ -194,6 +282,20 @@
   display: flex;
   gap: 10px;
   justify-content: flex-end;
+
+  button {
+    height: 50px;
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+
+  button[type="delete"] {
+    background-color: rgb(239, 176, 176);
+  }
+  button[type="save"] {
+    background-color: rgb(176, 239, 184);
+  }
+
 }
 
 input {
@@ -213,7 +315,7 @@ select {
   justify-content: center;
   align-items: center;
   background-color: #ffcccc;
-  border: 2px solid red;
+  border: 5px solid red;
   /* padding: 1rem; */
   font-weight: bold;
   animation: pulse 1s infinite;
@@ -227,8 +329,10 @@ select {
 
 .stop-alarm-button {
   border-radius: 50px;
-  height: 80px;
-  width: 150px;
+  height: 100px;
+  /* width: 150px; */
+  font-size: 3rem;
+  border: 2px solid red;
 }
 
 button {
@@ -240,52 +344,50 @@ button {
 }
 
 @media (max-width:400px) {
-  .time {
+  .text1 {
     font-size: 3rem;
-    font-weight: bold;
   }
-
-  .date {
+  .text2 {
     font-size: 2rem;
   }
-  .container-1 {
-    flex-direction:column;
-  }
-  .add-alarm-view {
-    display: flex;
-    flex: 1;
-    justify-content: flex-start;
-    margin-top: 1rem;
-  }
-  .container-2 {
-    display: flex;
-    flex-direction: column;  /* Stack them vertically */
-  }
-
-  .left-pane,
-  .right-pane {
-    width: 100%; 
-    padding: 10px;
-    box-sizing: border-box;
-  }
 
 }
 
-@media (max-width:960px) {
-  .time {
+@media (max-width:1000px) {
+  .text1 {
     font-size: 6rem;
-    font-weight: bold;
   }
-
-  .date {
+  .text2 {
     font-size: 4rem;
   }
+
   .container-1 {
-    flex-direction:column;
+    flex-direction: column;
   }
-  .add-alarm-view {
-    display: flex;
-    flex: 1;
-    justify-content: flex-start;
+  .container-2 {
+    flex-direction: column;
+  }
+
+  .container-2-left-pane,
+  .container-2-right-pane {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
   }
 }
+
+
+/* .alarm-action-buttons-view { */
+/* display: flex; */
+/* flex-direction: column; */
+/* } */
+/* .delete-alarm-button { */
+/* border-radius: 5px; */
+/* padding: 5px 10px; */
+/* margin-bottom: 10px;  TODO: to add again with edit feature */
+/* } */
+/* .edit-alarm-button{ */
+/* border-radius: 5px; */
+/* padding: 5px 10px; */
+/* } */

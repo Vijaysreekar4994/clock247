@@ -33,7 +33,7 @@ function App() {
   const [selectedSound, setSelectedSound] = useState(alarmSounds[1].value);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [noteText, setNoteText] = useState(localStorage.getItem('alarmNote') || '');
-  const [showNotes, setShowNotes] = useState(false);
+  const [showNotes, setShowNotes] = useState(true);
 
   const alarmStartTimeRef = useRef(null);
   const alarmAudioRef = useRef(null);
