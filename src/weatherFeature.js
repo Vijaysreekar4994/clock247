@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import weatherCodeMap from './weatherCodes';
+// import weatherCodeMap from './weatherCodes';
 // import './WeatherFeature.css';
 import { LuRefreshCw } from "react-icons/lu";
+// import { ReactComponent as IndiaFlag } from "./assets/in.svg"
+import weatherIconMap from './weatherIcons';
+
 
 
 const WeatherFeature = () => {
@@ -11,7 +14,7 @@ const WeatherFeature = () => {
   const [showModal, setShowModal] = useState(false);
   const [coords, setCoords] = useState({ lat: 49.0435, lon: 2.1213 });
   const [locationName, setLocationName] = useState('');
-  const [indiaTime, setIndiaTime] = useState('');
+  // const [indiaTime, setIndiaTime] = useState('');
 
   const fetchWeather = async () => {
     setLoading(true);
@@ -50,23 +53,23 @@ const WeatherFeature = () => {
     }
   };
 
-  const updateIndiaTime = () => {
-    const india = new Date().toLocaleTimeString('en-IN', {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false,
-      timeZone: 'Asia/Kolkata'
-    });
-    setIndiaTime(india);
-  };
+  // const updateIndiaTime = () => {
+  //   const india = new Date().toLocaleTimeString('en-IN', {
+  //     hour: '2-digit',
+  //     minute: '2-digit',
+  //     hour12: false,
+  //     timeZone: 'Asia/Kolkata'
+  //   });
+  //   setIndiaTime(india);
+  // };
 
   useEffect(() => {
     fetchWeather();
     fetchLocationName();
-    updateIndiaTime();
+    // updateIndiaTime();
     const interval = setInterval(() => {
       fetchWeather();
-      updateIndiaTime();
+      // updateIndiaTime();
     }, 60 * 60 * 1000); // hourly refresh
     return () => clearInterval(interval);
   }, [coords]);
@@ -81,35 +84,38 @@ const WeatherFeature = () => {
     setCoords((prev) => ({ ...prev, [name]: value }));
   };
 
-  if (loading) return <div className="weather-box" onClick={handleWeatherClick} >Loading weather...</div>;
-  if (error) return <div className="weather-box" onClick={handleWeatherClick}>{error}</div>;
+  if (loading) return <div className="weather-box" >Loading weather...</div>;
+  if (error) return <div className="weather-box" >{error}
+  <button onClick={() => { fetchWeather(); fetchLocationName() }} className="weather-refresh-button">
+            <LuRefreshCw />
+          </button>
+  </div>;
 
   return (
     <>
       <div className="weather-box">
         <div onClick={handleWeatherClick}>
-          <span className='text2'>{weather.temp}&deg;C</span>
+          <span className='text2'>{weather.temp}&deg;C {weatherIconMap[weather.code]}</span>
         </div>
         <div>
-          <span className='text4'>{weatherCodeMap[weather.code]}
-            <button onClick={() => { fetchWeather(); fetchLocationName()}} className="weather-refresh-button">
-              <LuRefreshCw />
-            </button>
-          </span><br /><br />
+          {/* <span className='text4'>{weatherCodeMap[weather.code]}
+          </span><br /><br /> */}
           <span className='text4'>{locationName}</span>
-          <br /><br />
+          <button onClick={() => { fetchWeather(); fetchLocationName() }} className="weather-refresh-button">
+            <LuRefreshCw />
+          </button>
         </div>
-          <span className='text2'>🇮🇳 {indiaTime}</span>
+        {/* <div className='text2'><IndiaFlag className='flagSvg1' /> {indiaTime}</div> */}
       </div>
-       {showModal && (
+      {showModal && (
         <div className="modal-overlay">
           <div className="modal-content">
             <h3>Set Coordinates</h3>
             <input type="number" step="0.0001" name="lat" value={coords.lat} onChange={handleCoordChange} placeholder="Latitude" />
             <input type="number" step="0.0001" name="lon" value={coords.lon} onChange={handleCoordChange} placeholder="Longitude" />
             <div className="modal-buttons">
-              <button 
-              type='save' onClick={() => { fetchWeather(); fetchLocationName(); setShowModal(false); }}>Save & Close</button>
+              <button
+                type='save' onClick={() => { fetchWeather(); fetchLocationName(); setShowModal(false); }}>Save & Close</button>
               <button onClick={() => window.open('https://open-meteo.com/en/docs', '_blank')}>Open API Docs</button>
             </div>
           </div>

@@ -10,8 +10,10 @@ import {
 } from './useAlarmUtils';
 import { saveAlarms, loadAlarms } from './localStorageServices';
 import { BsFullscreen, BsFullscreenExit, BsAlarm } from "react-icons/bs";
-import { IoAlarmOutline } from "react-icons/io5";
+// import { IoAlarmOutline } from "react-icons/io5";
 import WeatherFeature from './weatherFeature';
+import { ReactComponent as IndiaFlag } from "./assets/in.svg"
+
 
 
 const alarmSounds = [
@@ -23,6 +25,7 @@ const alarmSounds = [
 function App() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [dateTime, setDateTime] = useState(new Date());
+  const [indiaTime, setIndiaTime] = useState('');
   const [alarms, setAlarms] = useState([]);
   const [isAlarmActive, setIsAlarmActive] = useState(false);
   const [inputTime, setInputTime] = useState('');
@@ -251,6 +254,12 @@ function App() {
     const timer = setInterval(() => {
       const now = new Date();
       setDateTime(now);
+      setIndiaTime(now.toLocaleTimeString('en-IN', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+        timeZone: 'Asia/Kolkata'
+      }));
 
       if (!isAlarmActive && !alarmStartTimeRef.current) {
         const triggeredAlarm = alarms.find(alarm => isAlarmMatch(alarm, now));
@@ -291,10 +300,10 @@ function App() {
     const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri"];
     const weekend = ["Sat", "Sun"];
     const allDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  
+
     const isSameSet = (a, b) =>
       a.length === b.length && a.every(day => b.includes(day));
-  
+
     if (isSameSet(days, allDays)) return "Daily";
     if (isSameSet(days, weekdays)) return "Weekdays";
     if (isSameSet(days, weekend)) return "Weekend";
@@ -390,11 +399,15 @@ function App() {
             <div className="text2">{date}</div>
           </div>
           <div className='container-1-right-pane'>
-          <WeatherFeature />
+            <WeatherFeature />
+          <div className='text2'><IndiaFlag className='flagSvg1' /> {indiaTime}</div>
+
             {/* <button className='add-alarm-button' onClick={() => setIsModalOpen(true)}><IoAlarmOutline size={60} /></button> */}
           </div>
         </div>
-
+        {/* <div className='widgets-container'>
+          <div className='text2'><IndiaFlag className='flagSvg1' /> {indiaTime}</div>
+        </div> */}
         <div className="container-2">
           <div className='container-2-left-pane'>
             <div className='pane-heading-view'>
