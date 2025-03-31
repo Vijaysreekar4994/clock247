@@ -7,7 +7,7 @@ import {
     getFormattedAlarmTime,
     requestWakeLock,
     releaseWakeLock,
-} from './useAlarmUtils';
+} from '../useAlarmUtils';
 
 function App() {
     const [dateTime, setDateTime] = useState(new Date());

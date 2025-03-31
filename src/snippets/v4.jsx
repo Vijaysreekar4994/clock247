@@ -8,8 +8,8 @@ import {
   getFormattedAlarmTime,
   requestWakeLock,
   releaseWakeLock,
-} from './useAlarmUtils';
-import { saveAlarms, loadAlarms } from './localStorageServices';
+} from '../useAlarmUtils';
+import { saveAlarms, loadAlarms } from '../localStorageServices';
 
 const alarmSounds = [
   { label: 'Beep', value: 'beep.mp3' },

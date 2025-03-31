@@ -7,11 +7,11 @@ import {
   requestWakeLock,
   releaseWakeLock,
   // requestFullScreen,
-} from './useAlarmUtils';
-import { saveAlarms, loadAlarms } from './localStorageServices';
+} from '../useAlarmUtils';
+import { saveAlarms, loadAlarms } from '../localStorageServices';
 import { BsFullscreen, BsFullscreenExit, BsAlarm } from "react-icons/bs";
 import { IoAlarmOutline } from "react-icons/io5";
-import WeatherFeature from './weatherFeature';
+import WeatherFeature from '../weatherFeature';
 
 
 const alarmSounds = [
@@ -291,10 +291,10 @@ function App() {
     const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri"];
     const weekend = ["Sat", "Sun"];
     const allDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  
+
     const isSameSet = (a, b) =>
       a.length === b.length && a.every(day => b.includes(day));
-  
+
     if (isSameSet(days, allDays)) return "Daily";
     if (isSameSet(days, weekdays)) return "Weekdays";
     if (isSameSet(days, weekend)) return "Weekend";
@@ -390,7 +390,7 @@ function App() {
             <div className="text2">{date}</div>
           </div>
           <div className='container-1-right-pane'>
-          <WeatherFeature />
+            <WeatherFeature />
             {/* <button className='add-alarm-button' onClick={() => setIsModalOpen(true)}><IoAlarmOutline size={60} /></button> */}
           </div>
         </div>

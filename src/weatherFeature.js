@@ -14,21 +14,20 @@ const WeatherFeature = () => {
   const [showModal, setShowModal] = useState(false);
   const [coords, setCoords] = useState({ lat: 49.0435, lon: 2.1213 });
   const [locationName, setLocationName] = useState('');
-  // const [indiaTime, setIndiaTime] = useState('');
-
   const fetchWeather = async () => {
     setLoading(true);
     setError(null);
     try {
-      const url = `https://api.open-meteo.com/v1/forecast?latitude=${coords.lat}&longitude=${coords.lon}&current=temperature_2m,weathercode&timezone=auto`
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${coords.lat}&longitude=${coords.lon}&current=temperature_2m,weathercode,apparent_temperature,is_day&timezone=auto`
 
       const response = await fetch(url);
       const data = await response.json();
-
       if (data.current) {
         setWeather({
           temp: Math.round(data.current.temperature_2m),
-          code: data.current.weathercode
+          feelsLike: Math.round(data.current.apparent_temperature),
+          icon: weatherIconMap[data.current.is_day ? 'day' : 'night'][data.current.weathercode],
+          isDay: data.current.is_day === 1
         });
       } else {
         setError('Weather data unavailable');
@@ -53,24 +52,12 @@ const WeatherFeature = () => {
     }
   };
 
-  // const updateIndiaTime = () => {
-  //   const india = new Date().toLocaleTimeString('en-IN', {
-  //     hour: '2-digit',
-  //     minute: '2-digit',
-  //     hour12: false,
-  //     timeZone: 'Asia/Kolkata'
-  //   });
-  //   setIndiaTime(india);
-  // };
-
   useEffect(() => {
     fetchWeather();
     fetchLocationName();
-    // updateIndiaTime();
     const interval = setInterval(() => {
       fetchWeather();
-      // updateIndiaTime();
-    }, 60 * 60 * 1000); // hourly refresh
+    }, 60 * 60 * 1000);
     return () => clearInterval(interval);
   }, [coords]);
 
@@ -86,26 +73,21 @@ const WeatherFeature = () => {
 
   if (loading) return <div className="weather-box" >Loading weather...</div>;
   if (error) return <div className="weather-box" >{error}
-  <button onClick={() => { fetchWeather(); fetchLocationName() }} className="weather-refresh-button">
-            <LuRefreshCw />
-          </button>
+    <button onClick={() => { fetchWeather(); fetchLocationName() }} className="weather-refresh-button">
+      <LuRefreshCw />
+    </button>
   </div>;
 
   return (
     <>
       <div className="weather-box">
-        <div onClick={handleWeatherClick}>
-          <span className='text2'>{weather.temp}&deg;C {weatherIconMap[weather.code]}</span>
-        </div>
         <div>
-          {/* <span className='text4'>{weatherCodeMap[weather.code]}
-          </span><br /><br /> */}
-          <span className='text4'>{locationName}</span>
+          <span className='text2' onClick={handleWeatherClick}>{weather.icon}{weather.temp}&deg;C</span>
           <button onClick={() => { fetchWeather(); fetchLocationName() }} className="weather-refresh-button">
             <LuRefreshCw />
           </button>
         </div>
-        {/* <div className='text2'><IndiaFlag className='flagSvg1' /> {indiaTime}</div> */}
+        <span className='text3'>Feels like {weather.feelsLike}&deg;C</span>
       </div>
       {showModal && (
         <div className="modal-overlay">
