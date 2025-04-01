@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkclock247=self.webpackChunkclock247||[]).push([[182],{182:(e,t,_)=>{_.r(t),_.d(t,{default:()=>n});const n={container1:"view2_container1__yQ1jE",container1LeftPane:"view2_container1LeftPane__Qe5E2",container1RightPane:"view2_container1RightPane__fVkpg",weatherRefreshButton:"view2_weatherRefreshButton__JyQJ3",text1:"view2_text1__a7SY+",text2:"view2_text2__f9uli",text3:"view2_text3__NhhJ7",flagSvg1:"view2_flagSvg1__slbOJ"}}}]);
+//# sourceMappingURL=182.65a6daf7.chunk.js.map
