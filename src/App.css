@@ -1,87 +1,17 @@
 .App {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
-  color: white;
-  /* font-family: sans-serif !important; */
+  /* width: 100%;
+  height: 100%; */
   overflow-y: scroll;
   user-select: none;
+  color:#efefef;
 }
 
 .content {
   display: flex;
   flex-direction: column;
   height: 100vh;
-}
-
-.container-1 {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  padding: 0px 20px;
-  /* border-bottom:1px solid gray ; */
-}
-
-.container-1-left-pane {
-  display: flex;
-  flex: 4;
-  flex-direction: column;
-  white-space: nowrap;
-  justify-content: space-between;
-  /* padding-right: 15px; */
-  /* background-color: #cccccc89; */
-}
-
-.container-1-right-pane {
-  display: flex;
-  flex: 2;
-  flex-direction: column;
-  width: 100%;
-  align-items: flex-end;
-  /* background-color: #cccccc1d; */
-}
-
-.weather-refresh-button {
-  padding: 10px 20px 0px 20px;
-  /* width: ; */
-  height: fit-content;
-  border: none;
-  border-radius: 6px;
-  /* background: #7b1a1aba; */
-  background: transparent;
-  color: #ccc;
-  cursor: 'pointer';
-}
-
-.add-alarm-button {
-  width: 100px;
-  height: 80px;
-  border-radius: 30px;
-}
-
-.b {
-  font-weight: bold;
-}
-.text1 {
-  font-size: 10rem;
-}
-
-.text2 {
-  font-size: 6rem;
-}
-.text3 {
-  font-size: 4rem;
-}
-.text4 {
-  font-size: 2rem;
-}
-.text5 {
-  font-size: 1rem;
-}
-
-.flagSvg1{
-  height: 4rem;
 }
 
 .container-2 {
@@ -108,10 +38,14 @@
   /* background-color: #282c34; */
   display: flex;
   align-items: center;
-  /* flex-direction: row; */
   justify-content: space-between;
+  margin-bottom: 15px;
   button {
-    font-size: 1.5rem;
+    font-size: 2rem;
+    background-color: transparent;
+    color: inherit;
+    border: 1px solid white;
+    height: 100%;
   }
 }
 
@@ -166,7 +100,6 @@
   /* background: #cccccc1b; */
   display: flex;
   justify-content: flex-end;
-
 }
 .fullscreen-button {
   /* position: fixed; */
@@ -174,17 +107,20 @@
   left: 20px; */
   /* z-index: 999; */
   padding: 20px;
+  margin-left: 10px;
   width: fit-content;
   height: fit-content;
   border: none;
   border-radius: 6px;
   /* background: #cccccc1b; */
   background: transparent;
-  color: #ccc;
+  color: inherit;
   cursor: 'pointer';
 }
-
-
+.selected{
+  font-weight: bold;
+  text-decoration: underline;
+}
 
 @keyframes pulse {
   0% {
@@ -251,7 +187,6 @@
   font-weight: bold;
 }
 
-
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -300,6 +235,9 @@
   button[type="save"] {
     background-color: rgb(176, 239, 184);
   }
+  :disabled {
+    background-color: rgb(170, 171, 170) !important;
+  }
 
 }
 
@@ -338,6 +276,7 @@ select {
   /* width: 150px; */
   font-size: 3rem;
   border: 2px solid red;
+  margin: 1rem;
 }
 
 button {
@@ -348,27 +287,8 @@ button {
   border: none;
 }
 
-@media (max-width:400px) {
-  .text1 {
-    font-size: 3rem;
-  }
-  .text2 {
-    font-size: 2rem;
-  }
-
-}
-
 @media (max-width:960px) {
-  .text1 {
-    font-size: 6rem;
-  }
-  .text2 {
-    font-size: 4rem;
-  }
 
-  .container-1 {
-    flex-direction: column;
-  }
   .container-2 {
     flex-direction: column;
   }

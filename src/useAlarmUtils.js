@@ -4,13 +4,17 @@ export const getFormattedTime = (date) =>
         minute: '2-digit',
     });
 
+export const getFormattedDay = (date) =>
+    date.toLocaleDateString('en-GB', {
+        weekday: 'long',
+    });
+
 export const getFormattedDate = (date) =>
     date.toLocaleDateString('en-GB', {
         day: '2-digit',
-        weekday: 'short',
         month: 'short',
-        // year: 'numeric',
-    }).replace(/(\w+), (\d+) (\w+) (\d+)/, '$2 $3 $4, $1');
+        year: '2-digit',
+    }).replace(/(\d+) (\w+) (\d+)/, '$1 $2 $3');
 
 export const getFormattedAlarmTime = (alarmTime) =>
     alarmTime.toLocaleTimeString('en-GB', {

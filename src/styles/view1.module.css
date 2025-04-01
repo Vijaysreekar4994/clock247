@@ -1,0 +1,98 @@
+.container1 {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 20px;
+}
+
+.container1LeftPane {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  white-space: nowrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.container1RightPane {
+  display: flex;
+  flex-wrap: wrap;   
+  gap: 10px;  
+}
+
+.weatherBox {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;   
+  gap: 10px;  
+}
+
+.weatherRefreshButton {
+  /* padding: 10px 20px 0px 20px; */
+  /* height: fit-content; */
+  border: none;
+  /* border-radius: 6px; */
+  background: transparent;
+  cursor: 'pointer';
+  color: inherit;
+}
+
+.time {
+  font-size: 15rem;
+}
+
+.date {
+  font-size: 6rem;
+}
+.weatherIcon{
+  font-size: 5rem;
+}
+
+.widget {
+  background-color: rgba(128, 128, 128, 0.355);
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+.temperature {
+  font-size: 6rem;
+}
+.feelsLike {
+  font-size: 2.2rem;
+  display: inline-block;
+  text-align: center;
+  margin-right: 15px;
+}
+
+.otherTime {
+  font-size: 6rem;
+}
+
+.flagSvg1 {
+  height: 4rem;
+  margin-right: 10px;
+}
+
+@media (max-width:400px) {
+  .time {
+    font-size: 3rem;
+  }
+
+  .date {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width:960px) {
+  .time {
+    font-size: 6rem;
+  }
+
+  .date {
+    font-size: 4rem;
+  }
+
+  .container1 {
+    flex-direction: column;
+  }
+}

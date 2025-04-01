@@ -6,6 +6,7 @@ import {
   // getFormattedAlarmTime,
   requestWakeLock,
   releaseWakeLock,
+  getFormattedDay,
   // requestFullScreen,
 } from './useAlarmUtils';
 import { saveAlarms, loadAlarms } from './localStorageServices';
@@ -13,6 +14,7 @@ import { BsFullscreen, BsFullscreenExit, BsAlarm } from "react-icons/bs";
 // import { IoAlarmOutline } from "react-icons/io5";
 import WeatherFeature from './weatherFeature';
 import { ReactComponent as IndiaFlag } from "./assets/in.svg"
+import { ReactComponent as USAFlag } from "./assets/us.svg"
 
 
 
@@ -26,6 +28,7 @@ function App() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [dateTime, setDateTime] = useState(new Date());
   const [indiaTime, setIndiaTime] = useState('');
+  const [usaTime, setUsaTime] = useState('');
   const [alarms, setAlarms] = useState([]);
   const [isAlarmActive, setIsAlarmActive] = useState(false);
   const [inputTime, setInputTime] = useState('');
@@ -37,6 +40,11 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [noteText, setNoteText] = useState(localStorage.getItem('alarmNote') || '');
   const [showNotes, setShowNotes] = useState(false);
+
+  const [viewMode, setViewMode] = useState(() => {
+    return localStorage.getItem('selectedView') || 'view1';
+  });
+  const [viewStyles, setViewStyles] = useState({});
 
   const alarmStartTimeRef = useRef(null);
   const alarmAudioRef = useRef(null);
@@ -53,6 +61,7 @@ function App() {
   const time = getFormattedTime(dateTime);
   // const timeWithSeconds = dateTime.toLocaleTimeString();
   const date = getFormattedDate(dateTime);
+  const day = getFormattedDay(dateTime);
 
   const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -84,6 +93,16 @@ function App() {
     handleCloseModal()
   };
 
+  useEffect(() => {
+    localStorage.setItem('selectedView', viewMode);
+
+    import(`./styles/${viewMode}.module.css`)
+      .then((module) => setViewStyles(module.default))
+      .catch((err) => console.error('Failed to load view styles:', err));
+  }, [viewMode]);
+
+
+  // handleFullscreenChange effect
   useEffect(() => {
     const handleFullscreenChange = () => {
       setIsFullscreen(!!document.fullscreenElement);
@@ -260,6 +279,12 @@ function App() {
         hour12: false,
         timeZone: 'Asia/Kolkata'
       }));
+      setUsaTime(now.toLocaleTimeString('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+        timeZone: 'America/Chicago'
+      }));
 
       if (!isAlarmActive && !alarmStartTimeRef.current) {
         const triggeredAlarm = alarms.find(alarm => isAlarmMatch(alarm, now));
@@ -311,7 +336,7 @@ function App() {
   };
   // console.log(alarms)
   return (
-    <div className="App">
+    <div className='App'>
       <audio ref={alarmAudioRef} preload="auto" />
       <div className='content'>
         {isModalOpen && (
@@ -393,20 +418,30 @@ function App() {
         )
         }
 
-        <div className="container-1" >
-          <div className='container-1-left-pane'>
-            <div className="text1 b">{time}</div>
-            <div className="text2">{date}</div>
+        <div className={viewStyles.container1 || ''} >
+          <div className={viewStyles.container1LeftPane || ''}>
+            <div className={viewStyles.time || ''}>{time}</div>
+            <div>
+              <span className={viewStyles.date || ''}>{day}</span><br />
+              <span className={viewStyles.date || ''}>{date}</span>
+            </div>
           </div>
-          <div className='container-1-right-pane'>
-            <WeatherFeature />
-          <div className='text2'><IndiaFlag className='flagSvg1' /> {indiaTime}</div>
+          <div className={viewStyles.container1RightPane || ''}>
+            <WeatherFeature classes={viewStyles || ''} />
+            <div className={viewStyles.widget}>
+              <IndiaFlag className={viewStyles.flagSvg1 || ''} />
+              <span className={viewStyles.otherTime || ''}>{indiaTime}</span>
+            </div>
+            <div className={viewStyles.widget}>
+              <USAFlag className={viewStyles.flagSvg1 || ''} />
+              <span className={viewStyles.otherTime || ''}>{usaTime}</span>
+            </div>
 
-            {/* <button className='add-alarm-button' onClick={() => setIsModalOpen(true)}><IoAlarmOutline size={60} /></button> */}
+            {/* <button onClick={() => setIsModalOpen(true)}><IoAlarmOutline size={60} /></button> */}
           </div>
         </div>
-        {/* <div className='widgets-container'>
-          <div className='text2'><IndiaFlag className='flagSvg1' /> {indiaTime}</div>
+        {/* <div className='widgetsContainer'>
+          <div className='date'><IndiaFlag className='flagSvg1' /> {indiaTime}</div>
         </div> */}
         <div className="container-2">
           <div className='container-2-left-pane'>
@@ -465,6 +500,24 @@ function App() {
             </div>
             <div className="fullscreen-button-view">
               <button
+                className={viewMode === 'view1' ? 'selected fullscreen-button' : 'fullscreen-button'}
+                onClick={() => setViewMode('view1')}
+              >
+                View 1
+              </button>
+              <button
+                className={viewMode === 'view2' ? 'selected fullscreen-button' : 'fullscreen-button'}
+                onClick={() => setViewMode('view2')}
+              >
+                View 2
+              </button>
+              <button
+                className={viewMode === 'view3' ? 'selected fullscreen-button' : 'fullscreen-button'}
+                onClick={() => setViewMode('view3')}
+              >
+                View 3
+              </button>
+              <button
                 onClick={toggleFullscreen}
                 className='fullscreen-button'
                 title={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
@@ -474,16 +527,12 @@ function App() {
             </div>
           </div>
         </div>
-
-
-
         {
           isAlarmActive && (
             <div className="alarm-ring">
               <BsAlarm size={80} />
-              <br />
-              <br />
               <button className='stop-alarm-button' onClick={stopAlarm}>Stop Alarm</button>
+              {/* <span className='time'>{}</span> TODO: add alarm NOTE */}
             </div>
           )
         }

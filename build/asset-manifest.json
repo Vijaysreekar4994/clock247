@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/clock247/static/css/main.d2b51cec.css",
-    "main.js": "/clock247/static/js/main.4668f523.js",
+    "main.css": "/clock247/static/css/main.e66d7903.css",
+    "main.js": "/clock247/static/js/main.bb0f832e.js",
     "static/js/488.709c8670.chunk.js": "/clock247/static/js/488.709c8670.chunk.js",
     "service-worker.js": "/clock247/service-worker.js",
     "static/media/in.svg": "/clock247/static/media/in.2ba098d4c3c1b01897c66e3b71641efb.svg",
     "index.html": "/clock247/index.html",
-    "main.d2b51cec.css.map": "/clock247/static/css/main.d2b51cec.css.map",
-    "main.4668f523.js.map": "/clock247/static/js/main.4668f523.js.map",
+    "main.e66d7903.css.map": "/clock247/static/css/main.e66d7903.css.map",
+    "main.bb0f832e.js.map": "/clock247/static/js/main.bb0f832e.js.map",
     "488.709c8670.chunk.js.map": "/clock247/static/js/488.709c8670.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d2b51cec.css",
-    "static/js/main.4668f523.js"
+    "static/css/main.e66d7903.css",
+    "static/js/main.bb0f832e.js"
   ]
 }

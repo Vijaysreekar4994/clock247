@@ -7,7 +7,8 @@ import weatherIconMap from './weatherIcons';
 
 
 
-const WeatherFeature = () => {
+const WeatherFeature = (props) => {
+  const {classes}=props
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -73,21 +74,25 @@ const WeatherFeature = () => {
 
   if (loading) return <div className="weather-box" >Loading weather...</div>;
   if (error) return <div className="weather-box" >{error}
-    <button onClick={() => { fetchWeather(); fetchLocationName() }} className="weather-refresh-button">
+    <button onClick={() => { fetchWeather(); fetchLocationName() }} className={classes.weatherRefreshButton || ''}>
       <LuRefreshCw />
     </button>
   </div>;
 
   return (
     <>
-      <div className="weather-box">
-        <div>
-          <span className='text2' onClick={handleWeatherClick}>{weather.icon}{weather.temp}&deg;C</span>
-          <button onClick={() => { fetchWeather(); fetchLocationName() }} className="weather-refresh-button">
+      <div className={classes.weatherBox}>
+        <div className={classes.widget}>
+          <span className={classes.weatherIcon}>{weather.icon}</span>
+          <span className={classes.temperature} onClick={handleWeatherClick}>{weather.temp}&deg;C</span>
+          <button onClick={() => { fetchWeather(); fetchLocationName() }} className={classes.weatherRefreshButton || ''}>
             <LuRefreshCw />
           </button>
         </div>
-        <span className='text3'>Feels like {weather.feelsLike}&deg;C</span>
+        <div className={classes.widget}>
+          <span className={classes.feelsLike}>{'Feels'}<br />like</span>
+          <span className={classes.temperature}>{weather.feelsLike}&deg;C</span>
+        </div>
       </div>
       {showModal && (
         <div className="modal-overlay">
@@ -95,6 +100,8 @@ const WeatherFeature = () => {
             <h3>Set Coordinates</h3>
             <input type="number" step="0.0001" name="lat" value={coords.lat} onChange={handleCoordChange} placeholder="Latitude" />
             <input type="number" step="0.0001" name="lon" value={coords.lon} onChange={handleCoordChange} placeholder="Longitude" />
+            <br />
+            <h3>{locationName}</h3>
             <div className="modal-buttons">
               <button
                 type='save' onClick={() => { fetchWeather(); fetchLocationName(); setShowModal(false); }}>Save & Close</button>
