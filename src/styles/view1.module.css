@@ -131,6 +131,12 @@
   }
 }
 
+@media (max-width:850px) {
+  .container1LeftPane {
+    justify-content: center;
+  }
+}
+
 @media (max-width:600px) {
   .time {
     font-size:10rem;

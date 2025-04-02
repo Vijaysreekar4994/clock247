@@ -84,11 +84,11 @@ const WeatherFeature = (props) => {
       <div className={classes.widgetBig}>
         <span className={classes.weatherIcon}>{weather.icon}</span>
         <span className={classes.temperature} onClick={handleWeatherClick}>{weather.temp}&deg;C</span>
-        <br />
-        <span className={classes.feelsLike}>Feels like {weather.feelsLike}&deg;C</span>
         <button onClick={() => { fetchWeather(); fetchLocationName() }} className={classes.weatherRefreshButton || ''}>
           <LuRefreshCw />
         </button>
+        <br />
+        <span className={classes.feelsLike}>Feels like {weather.feelsLike}&deg;C</span>
       </div>
       {showModal && (
         <div className="modal-overlay">
