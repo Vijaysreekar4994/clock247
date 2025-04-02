@@ -1,72 +1,107 @@
 .container1 {
   display: flex;
-  flex: 1;
-  flex-direction: row;
+  flex-direction: column;
   padding: 0px 20px;
 }
 
 .container1LeftPane {
   display: flex;
-  flex: 4;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
   white-space: nowrap;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .container1RightPane {
   display: flex;
-  flex: 2;
-  flex-direction: column;
-  width: 100%;
-  align-items: flex-end;
+  flex-wrap: wrap;   
+  gap: 10px;  
 }
 
 .weatherRefreshButton {
-  padding: 10px 20px 0px 20px;
-  height: fit-content;
+  /* padding: 10px 20px 0px 20px; */
+  /* height: fit-content; */
   border: none;
-  border-radius: 6px;
+  /* border-radius: 6px; */
   background: transparent;
-  color: #ccc;
   cursor: 'pointer';
+  color: inherit;
 }
 
-.text1 {
+.time {
+  font-size: 15rem;
+}
+.weatherIcon{
+  font-size: 5rem;
+}
+
+.date {
   font-size: 6rem;
 }
 
-.text2 {
+
+.widget {
+  background-color: rgba(109, 109, 109, 0.36);
+  padding: 5px 20px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+.widget2 {
+  background-color: rgba(109, 109, 109, 0.36);
+  padding: 5px 20px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.temperature {
   font-size: 6rem;
 }
 
-.text3 {
-  font-size: 4rem;
+.feelsLike {
+  font-size: 3rem;
 }
 
 .flagSvg1 {
   height: 4rem;
+  margin-right: 10px;
 }
 
 @media (max-width:400px) {
-  .text1 {
+  .time {
     font-size: 3rem;
   }
 
-  .text2 {
+  .date {
     font-size: 2rem;
   }
 }
 
 @media (max-width:960px) {
-  .text1 {
-    font-size: 6rem;
+  .time {
+    font-size: 8rem;
   }
 
-  .text2 {
+  .date {
     font-size: 4rem;
+  }
+  .flagSvg1 {
+    height: 2.9rem;
+    margin-right: 10px;
+  }
+  .weatherIcon{
+    font-size: 4rem;
+  }
+  .temperature {
+    font-size: 5rem;
+  }
+  .feelsLike {
+    font-size: 2.5rem;
   }
 
   .container1 {
     flex-direction: column;
+    padding: 20px 20px;
   }
 }

@@ -8,7 +8,7 @@ import weatherIconMap from './weatherIcons';
 
 
 const WeatherFeature = (props) => {
-  const {classes}=props
+  const { classes } = props
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -81,18 +81,14 @@ const WeatherFeature = (props) => {
 
   return (
     <>
-      <div className={classes.weatherBox}>
-        <div className={classes.widget}>
-          <span className={classes.weatherIcon}>{weather.icon}</span>
-          <span className={classes.temperature} onClick={handleWeatherClick}>{weather.temp}&deg;C</span>
-          <button onClick={() => { fetchWeather(); fetchLocationName() }} className={classes.weatherRefreshButton || ''}>
-            <LuRefreshCw />
-          </button>
-        </div>
-        <div className={classes.widget}>
-          <span className={classes.feelsLike}>{'Feels'}<br />like</span>
-          <span className={classes.temperature}>{weather.feelsLike}&deg;C</span>
-        </div>
+      <div className={classes.widgetBig}>
+        <span className={classes.weatherIcon}>{weather.icon}</span>
+        <span className={classes.temperature} onClick={handleWeatherClick}>{weather.temp}&deg;C</span>
+        <br />
+        <span className={classes.feelsLike}>Feels like {weather.feelsLike}&deg;C</span>
+        <button onClick={() => { fetchWeather(); fetchLocationName() }} className={classes.weatherRefreshButton || ''}>
+          <LuRefreshCw />
+        </button>
       </div>
       {showModal && (
         <div className="modal-overlay">

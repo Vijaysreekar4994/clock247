@@ -5,7 +5,6 @@
   height: 100%; */
   overflow-y: scroll;
   user-select: none;
-  color:#efefef;
 }
 
 .content {
@@ -45,7 +44,7 @@
     background-color: transparent;
     color: inherit;
     border: 1px solid white;
-    height: 100%;
+    /* height: 100%; */
   }
 }
 
@@ -102,10 +101,6 @@
   justify-content: flex-end;
 }
 .fullscreen-button {
-  /* position: fixed; */
-  /* bottom: 20px;
-  left: 20px; */
-  /* z-index: 999; */
   padding: 20px;
   margin-left: 10px;
   width: fit-content;
@@ -135,22 +130,6 @@
     transform: scale(1);
   }
 }
-
-/* .day-selection input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-
-.day-selection label {
-  display: inline-flex;
-  align-items: center;
-  font-size: 1rem;
-  border: 1px solid lightgray;
-  border-radius: 10px;
-  margin: 5px;
-  padding-right: 5px;
-} */
 
 /* === DAY SELECTION STYLE LIKE IMAGE === */
 .day-selection {
@@ -221,6 +200,7 @@
   margin-top: 20px;
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
   justify-content: flex-end;
 
   button {
@@ -274,7 +254,7 @@ select {
   border-radius: 50px;
   height: 100px;
   /* width: 150px; */
-  font-size: 3rem;
+  font-size: 2rem;
   border: 2px solid red;
   margin: 1rem;
 }

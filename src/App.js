@@ -15,6 +15,7 @@ import { BsFullscreen, BsFullscreenExit, BsAlarm } from "react-icons/bs";
 import WeatherFeature from './weatherFeature';
 import { ReactComponent as IndiaFlag } from "./assets/in.svg"
 import { ReactComponent as USAFlag } from "./assets/us.svg"
+import { ReactComponent as DubaiFlag } from "./assets/ae.svg"
 
 
 
@@ -29,6 +30,7 @@ function App() {
   const [dateTime, setDateTime] = useState(new Date());
   const [indiaTime, setIndiaTime] = useState('');
   const [usaTime, setUsaTime] = useState('');
+  const [dubaiTime, setDubaiTime] = useState('');
   const [alarms, setAlarms] = useState([]);
   const [isAlarmActive, setIsAlarmActive] = useState(false);
   const [inputTime, setInputTime] = useState('');
@@ -139,7 +141,6 @@ function App() {
       wakeLockRef.current = await navigator.wakeLock.request('screen');
     }
   };
-  // console.log(alarms)
   const stopAlarm = (isManual = true) => {
     console.log('⏹ Alarm stopped');
     setIsAlarmActive(false);
@@ -241,6 +242,7 @@ function App() {
 
     return matchesDay && matchesDate;
   };
+
   useEffect(() => {
     requestWakeLock(wakeLockRef, handleVisibilityChange);
     const now = new Date();
@@ -284,6 +286,12 @@ function App() {
         minute: '2-digit',
         hour12: false,
         timeZone: 'America/Chicago'
+      }));
+      setDubaiTime(now.toLocaleString('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+        timeZone: 'Asia/Dubai'
       }));
 
       if (!isAlarmActive && !alarmStartTimeRef.current) {
@@ -334,7 +342,6 @@ function App() {
     if (isSameSet(days, weekend)) return "Weekend";
     return days.join(', ');
   };
-  // console.log(alarms)
   return (
     <div className='App'>
       <audio ref={alarmAudioRef} preload="auto" />
@@ -355,19 +362,6 @@ function App() {
                 onChange={(e) => setSpecificDate(e.target.value)}
                 disabled={selectedDays.length > 0}
               />
-              {/* <div className='day-selection'>
-                {weekdays.map(day => (
-                  <label key={day}>
-                    <input
-                      type="checkbox"
-                      checked={selectedDays.includes(day)}
-                      onChange={() => toggleDay(day)}
-                      disabled={specificDate !== ''}
-                    />
-                    {day}
-                  </label>
-                ))}
-              </div> */}
               <div className='day-selection'>
                 {weekdays.map(day => (
                   <React.Fragment key={day}>
@@ -421,28 +415,31 @@ function App() {
         <div className={viewStyles.container1 || ''} >
           <div className={viewStyles.container1LeftPane || ''}>
             <div className={viewStyles.time || ''}>{time}</div>
-            <div>
-              <span className={viewStyles.date || ''}>{day}</span><br />
-              <span className={viewStyles.date || ''}>{date}</span>
-            </div>
+            <WeatherFeature classes={viewStyles || ''} />
           </div>
           <div className={viewStyles.container1RightPane || ''}>
-            <WeatherFeature classes={viewStyles || ''} />
+            <div className={viewStyles.widget}>
+              <span className={viewStyles.date || ''}>{day}</span>
+            </div>
+            <div className={viewStyles.widget}>
+              <span className={viewStyles.date || ''}>{date}</span>
+            </div>
             <div className={viewStyles.widget}>
               <IndiaFlag className={viewStyles.flagSvg1 || ''} />
-              <span className={viewStyles.otherTime || ''}>{indiaTime}</span>
+              <span className={viewStyles.date || ''}>{indiaTime}</span>
             </div>
             <div className={viewStyles.widget}>
               <USAFlag className={viewStyles.flagSvg1 || ''} />
-              <span className={viewStyles.otherTime || ''}>{usaTime}</span>
+              <span className={viewStyles.date || ''}>{usaTime}</span>
             </div>
-
+            <div className={viewStyles.widget}>
+              <DubaiFlag className={viewStyles.flagSvg1 || ''} />
+              <span className={viewStyles.date || ''}>{dubaiTime}</span>
+            </div>
             {/* <button onClick={() => setIsModalOpen(true)}><IoAlarmOutline size={60} /></button> */}
           </div>
         </div>
-        {/* <div className='widgetsContainer'>
-          <div className='date'><IndiaFlag className='flagSvg1' /> {indiaTime}</div>
-        </div> */}
+
         <div className="container-2">
           <div className='container-2-left-pane'>
             <div className='pane-heading-view'>
@@ -499,7 +496,7 @@ function App() {
               )}
             </div>
             <div className="fullscreen-button-view">
-              <button
+              {/* <button
                 className={viewMode === 'view1' ? 'selected fullscreen-button' : 'fullscreen-button'}
                 onClick={() => setViewMode('view1')}
               >
@@ -516,7 +513,7 @@ function App() {
                 onClick={() => setViewMode('view3')}
               >
                 View 3
-              </button>
+              </button> */}
               <button
                 onClick={toggleFullscreen}
                 className='fullscreen-button'
@@ -532,7 +529,21 @@ function App() {
             <div className="alarm-ring">
               <BsAlarm size={80} />
               <button className='stop-alarm-button' onClick={stopAlarm}>Stop Alarm</button>
-              {/* <span className='time'>{}</span> TODO: add alarm NOTE */}
+              <div style={{ marginTop: '1rem', textAlign: 'center' }}>
+                {currentAlarmRef.current && (
+                  <>
+                    <div style={{ fontSize: '5rem' }}>
+                      {currentAlarmRef.current.hour.toString().padStart(2, '0')}:
+                      {currentAlarmRef.current.minute.toString().padStart(2, '0')}
+                    </div>
+                    {currentAlarmRef.current.note && (
+                      <div style={{ marginTop: '0.5rem', fontSize: '3rem' }}>
+                        {currentAlarmRef.current.note}
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
             </div>
           )
         }

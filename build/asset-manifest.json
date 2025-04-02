@@ -1,17 +1,31 @@
 {
   "files": {
-    "main.css": "/clock247/static/css/main.e66d7903.css",
-    "main.js": "/clock247/static/js/main.bb0f832e.js",
+    "main.css": "/clock247/static/css/main.821c51dd.css",
+    "main.js": "/clock247/static/js/main.bc7b819b.js",
+    "static/css/875.bf257c6b.chunk.css": "/clock247/static/css/875.bf257c6b.chunk.css",
+    "static/js/875.0ea29b86.chunk.js": "/clock247/static/js/875.0ea29b86.chunk.js",
+    "static/css/182.38598928.chunk.css": "/clock247/static/css/182.38598928.chunk.css",
+    "static/js/182.27a69228.chunk.js": "/clock247/static/js/182.27a69228.chunk.js",
+    "static/css/981.6b530378.chunk.css": "/clock247/static/css/981.6b530378.chunk.css",
+    "static/js/981.830db7d5.chunk.js": "/clock247/static/js/981.830db7d5.chunk.js",
     "static/js/488.709c8670.chunk.js": "/clock247/static/js/488.709c8670.chunk.js",
     "service-worker.js": "/clock247/service-worker.js",
     "static/media/in.svg": "/clock247/static/media/in.2ba098d4c3c1b01897c66e3b71641efb.svg",
+    "static/media/us.svg": "/clock247/static/media/us.d21917ae9982e6ddb4522ce72f25de19.svg",
     "index.html": "/clock247/index.html",
-    "main.e66d7903.css.map": "/clock247/static/css/main.e66d7903.css.map",
-    "main.bb0f832e.js.map": "/clock247/static/js/main.bb0f832e.js.map",
+    "static/media/ae.svg": "/clock247/static/media/ae.a9f6b27098ce7c97c4e316a3527c947e.svg",
+    "main.821c51dd.css.map": "/clock247/static/css/main.821c51dd.css.map",
+    "main.bc7b819b.js.map": "/clock247/static/js/main.bc7b819b.js.map",
+    "875.bf257c6b.chunk.css.map": "/clock247/static/css/875.bf257c6b.chunk.css.map",
+    "875.0ea29b86.chunk.js.map": "/clock247/static/js/875.0ea29b86.chunk.js.map",
+    "182.38598928.chunk.css.map": "/clock247/static/css/182.38598928.chunk.css.map",
+    "182.27a69228.chunk.js.map": "/clock247/static/js/182.27a69228.chunk.js.map",
+    "981.6b530378.chunk.css.map": "/clock247/static/css/981.6b530378.chunk.css.map",
+    "981.830db7d5.chunk.js.map": "/clock247/static/js/981.830db7d5.chunk.js.map",
     "488.709c8670.chunk.js.map": "/clock247/static/js/488.709c8670.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e66d7903.css",
-    "static/js/main.bb0f832e.js"
+    "static/css/main.821c51dd.css",
+    "static/js/main.bc7b819b.js"
   ]
 }

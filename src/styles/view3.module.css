@@ -1,72 +1,72 @@
 .container1 {
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-    padding: 0px 20px;
-  }
-  
-  .container1LeftPane {
-    display: flex;
-    flex: 4;
-    flex-direction: column;
-    white-space: nowrap;
-    justify-content: space-between;
-  }
-  
-  .container1RightPane {
-    display: flex;
-    flex: 2;
-    flex-direction: column;
-    width: 100%;
-    align-items: flex-end;
-  }
-  
-  .weatherRefreshButton {
-    padding: 10px 20px 0px 20px;
-    height: fit-content;
-    border: none;
-    border-radius: 6px;
-    background: transparent;
-    color: #ccc;
-    cursor: 'pointer';
-  }
-  
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  padding: 0px 20px;
+}
+
+.container1LeftPane {
+  display: flex;
+  flex: 4;
+  flex-direction: column;
+  white-space: nowrap;
+  justify-content: space-between;
+}
+
+.container1RightPane {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-end;
+}
+
+.weatherRefreshButton {
+  padding: 10px 20px 0px 20px;
+  height: fit-content;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #ccc;
+  cursor: 'pointer';
+}
+
+.text1 {
+  font-size: 6rem;
+}
+
+.text2 {
+  font-size: 6rem;
+}
+
+.text3 {
+  font-size: 4rem;
+}
+
+.flagSvg1 {
+  height: 4rem;
+}
+
+@media (max-width:400px) {
   .text1 {
-    font-size: 10rem;
+    font-size: 3rem;
   }
-  
+
   .text2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width:960px) {
+  .text1 {
     font-size: 6rem;
   }
-  
-  .text3 {
+
+  .text2 {
     font-size: 4rem;
   }
-  
-  .flagSvg1 {
-    height: 4rem;
+
+  .container1 {
+    flex-direction: column;
   }
-  
-  @media (max-width:400px) {
-    .text1 {
-      font-size: 3rem;
-    }
-  
-    .text2 {
-      font-size: 2rem;
-    }
-  }
-  
-  @media (max-width:960px) {
-    .text1 {
-      font-size: 6rem;
-    }
-  
-    .text2 {
-      font-size: 4rem;
-    }
-  
-    .container1 {
-      flex-direction: column;
-    }
-  }
+}
