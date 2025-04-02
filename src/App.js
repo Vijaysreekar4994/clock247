@@ -418,10 +418,7 @@ function App() {
             <WeatherFeature classes={viewStyles || ''} />
           </div>
           <div className={viewStyles.container1RightPane || ''}>
-            <div className={viewStyles.widget}>
-              <span className={viewStyles.date || ''}>{day}</span>
-            </div>
-            <div className={viewStyles.widget}>
+            <div className={viewStyles.widgetDate}>
               <span className={viewStyles.date || ''}>{date}</span>
             </div>
             <div className={viewStyles.widget}>

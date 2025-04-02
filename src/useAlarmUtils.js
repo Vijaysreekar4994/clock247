@@ -11,10 +11,11 @@ export const getFormattedDay = (date) =>
 
 export const getFormattedDate = (date) =>
     date.toLocaleDateString('en-GB', {
+        weekday: 'short',
         day: '2-digit',
         month: 'short',
-        // year: '2-digit',
-    }).replace(/(\d+) (\w+) (\d+)/, '$1 $2 $3');
+        year: 'numeric',
+    }).replace(/(\w+), (\d+) (\w+) (\d+)/, '$2 $3 $4, $1');
 
 export const getFormattedAlarmTime = (alarmTime) =>
     alarmTime.toLocaleTimeString('en-GB', {
