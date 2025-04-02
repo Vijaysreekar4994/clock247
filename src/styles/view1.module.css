@@ -50,8 +50,9 @@
   border-radius: 10px;
   /* margin-right: 10px; */
   /* min-width: 35vw; */
-  /* display: flex; */
+  /* display: flex;  */
   /* align-items: center; */
+  /* justify-content: center; */
 }
 
 .widget {
@@ -132,6 +133,15 @@
 }
 
 @media (max-width:850px) {
+  .widgetBig {
+    background-color: rgba(109, 109, 109, 0.36);
+    border-radius: 10px;
+    min-width: 50vw;
+    text-align: center;
+     padding: 15px;
+     margin-bottom: 20px;
+  }
+
   .container1LeftPane {
     justify-content: center;
   }
