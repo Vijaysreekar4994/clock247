@@ -14,7 +14,7 @@ export const getFormattedDate = (date) =>
         weekday: 'short',
         day: '2-digit',
         month: 'short',
-        year: 'numeric',
+        year: '2-digit',
     }).replace(/(\w+), (\d+) (\w+) (\d+)/, '$2 $3 $4, $1');
 
 export const getFormattedAlarmTime = (alarmTime) =>

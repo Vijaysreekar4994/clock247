@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './App.css';
+import './styles/App.scss';
 import {
   getFormattedTime,
   getFormattedDate,
@@ -42,11 +42,10 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [noteText, setNoteText] = useState(localStorage.getItem('alarmNote') || '');
   const [showNotes, setShowNotes] = useState(false);
-
-  const [viewMode, setViewMode] = useState(() => {
-    return localStorage.getItem('selectedView') || 'view1';
+  const [viewportSize, setViewportSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight
   });
-  const [viewStyles, setViewStyles] = useState({});
 
   const alarmStartTimeRef = useRef(null);
   const alarmAudioRef = useRef(null);
@@ -96,13 +95,15 @@ function App() {
   };
 
   useEffect(() => {
-    localStorage.setItem('selectedView', viewMode);
-
-    import(`./styles/${viewMode}.module.css`)
-      .then((module) => setViewStyles(module.default))
-      .catch((err) => console.error('Failed to load view styles:', err));
-  }, [viewMode]);
-
+    const handleResize = () => {
+      setViewportSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // handleFullscreenChange effect
   useEffect(() => {
@@ -412,28 +413,27 @@ function App() {
         )
         }
 
-        <div className={viewStyles.container1 || ''} >
-          <div className={viewStyles.container1LeftPane || ''}>
-            <div className={viewStyles.time || ''}>{time}</div>
-            <WeatherFeature classes={viewStyles || ''} />
+        <div className={'container1'} >
+          <div className={'timeDateContainer'}>
+            <div className={'time'}>{time}</div>
+            <div className={'date'}>{date}</div>
           </div>
-          <div className={viewStyles.container1RightPane || ''}>
-            <div className={viewStyles.widgetDate}>
-              <span className={viewStyles.date || ''}>{date}</span>
+          <div className={'temperatureWidgetContainer'}>
+            <WeatherFeature />
+          </div>
+          <div className={'otherTimesContainer'}>
+            <div className={'otherTimeWidget'}>
+              <IndiaFlag className={'flagSvg1'} />
+              <span className={'otherTime'}>{indiaTime}</span>
             </div>
-            <div className={viewStyles.widget}>
-              <IndiaFlag className={viewStyles.flagSvg1 || ''} />
-              <span className={viewStyles.date || ''}>{indiaTime}</span>
+            <div className={'otherTimeWidget'}>
+              <USAFlag className={'flagSvg1'} />
+              <span className={'otherTime'}>{usaTime}</span>
             </div>
-            <div className={viewStyles.widget}>
-              <USAFlag className={viewStyles.flagSvg1 || ''} />
-              <span className={viewStyles.date || ''}>{usaTime}</span>
+            <div className={'otherTimeWidget'}>
+              <DubaiFlag className={'flagSvg1'} />
+              <span className={'otherTime'}>{dubaiTime}</span>
             </div>
-            <div className={viewStyles.widget}>
-              <DubaiFlag className={viewStyles.flagSvg1 || ''} />
-              <span className={viewStyles.date || ''}>{dubaiTime}</span>
-            </div>
-            {/* <button onClick={() => setIsModalOpen(true)}><IoAlarmOutline size={60} /></button> */}
           </div>
         </div>
 
@@ -493,24 +493,21 @@ function App() {
               )}
             </div>
             <div className="fullscreen-button-view">
-              {/* <button
-                className={viewMode === 'view1' ? 'selected fullscreen-button' : 'fullscreen-button'}
-                onClick={() => setViewMode('view1')}
+              <div
+                style={{
+                  position: 'fixed',
+                  bottom: 10,
+                  right: 10,
+                  backgroundColor: 'rgba(0,0,0,0.6)',
+                  color: '#fff',
+                  padding: '6px 12px',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  zIndex: 9999
+                }}
               >
-                View 1
-              </button>
-              <button
-                className={viewMode === 'view2' ? 'selected fullscreen-button' : 'fullscreen-button'}
-                onClick={() => setViewMode('view2')}
-              >
-                View 2
-              </button>
-              <button
-                className={viewMode === 'view3' ? 'selected fullscreen-button' : 'fullscreen-button'}
-                onClick={() => setViewMode('view3')}
-              >
-                View 3
-              </button> */}
+                {viewportSize.width} × {viewportSize.height}
+              </div>
               <button
                 onClick={toggleFullscreen}
                 className='fullscreen-button'

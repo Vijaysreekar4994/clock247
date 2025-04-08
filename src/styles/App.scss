@@ -1,0 +1,538 @@
+$xs: 460px;
+$sm: 700px;
+$md: 880px;
+$lg: 1024px;
+$xl: 1160px;
+$xxl: 1600px;
+
+$mdH1: 8rem;
+$mdH2: 6rem;
+$mdH3: 4rem;
+$mdH4: 3rem;
+$mdH5: 2rem;
+$mdH6: 1.5rem;
+$mdH7: 1rem;
+
+$xsH1: 5rem;
+$xsH2: 3rem;
+$xsH3: 2rem;
+$xsH4: 1.5rem;
+$xsH5: 1rem;
+
+.App {
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* === CONTAINER 1 START === */
+.container1 {
+  display: flex;
+  flex-direction: row;
+  padding: 0px 20px;
+  min-height: 100vh;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  @media (min-width: $xxl) {
+    min-height: 50vh;
+  }
+
+  .timeDateContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: $xl) {
+      display: flex;
+      width: 100%;
+    }
+
+    .time {
+      font-size: 12rem;
+
+      @media (max-width: $lg) {
+        font-size: $mdH1;
+      }
+      @media (max-width: $md) {
+        font-size: $mdH1;
+      }
+
+      @media (max-width: $xs) {
+        font-size: $xsH1;
+      }
+    }
+
+    .date {
+      font-size: 6rem;
+
+      @media (max-width: $md) {
+        font-size: $mdH2;
+      }
+
+      @media (max-width: $sm) {
+        font-size: $mdH3;
+      }
+
+      @media (max-width: $xs) {
+        font-size: $xsH2;
+      }
+    }
+  }
+
+  .temperatureWidgetContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    @media (max-width: $md) {
+      width: 100%;
+      justify-content: center;
+    }
+
+    @media (max-width: $xl) {
+      align-items: flex-start;
+    }
+
+    .base-weatherWidget {
+      max-width: fit-content;
+      max-height: fit-content;
+      background-color: rgba(109, 109, 109, 0.36);
+      padding: 10px 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      .weatherImage {
+        width: 5rem;
+        height: 5rem;
+
+        @media (max-width: $xs) {
+          width: 3rem;
+          height: 3rem;
+        }
+      }
+
+      .temperature {
+        font-size: 5rem;
+
+        @media (max-width: $md) {
+          font-size: $mdH3;
+        }
+
+        @media (max-width: $xs) {
+          font-size: $xsH3;
+        }
+      }
+
+      .feelsLike {
+        font-size: 2.5rem;
+
+        @media (max-width: $md) {
+          font-size: $mdH5;
+        }
+
+        @media (max-width: $xs) {
+          font-size: $xsH4;
+        }
+      }
+
+      .weatherDesciption {
+        max-width: 150px;
+        font-size: $mdH6;
+        text-wrap: wrap;
+
+        @media (max-width: $xs) {
+          font-size: $xsH5;
+        }
+      }
+
+    }
+
+    .insideWeatherWidget {
+      @extend .base-weatherWidget;
+      margin-right: 20px;
+      margin-top: 20px;
+    }
+
+    .outsideWeatherWidget {
+      @extend .base-weatherWidget;
+      margin-top: 20px;
+    }
+  }
+
+  .otherTimesContainer {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    justify-content: space-between;
+
+    @media (min-width: $xl) {
+      width: 100%;
+    }
+
+    @media (max-width: $xl) {
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    @media (max-width: $md) {
+      width: 100%;
+      align-items: center;
+    }
+
+    @media (min-width: $xxl) {
+      width: max-content;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .otherTimeWidget {
+      width: 350px;
+      max-height: max-content;
+      background-color: rgba(109, 109, 109, 0.36);
+      padding: 5px 0px;
+      border-radius: 10px;
+      // margin-right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @media (max-width: $xl) {
+        margin-bottom: 20px;
+      }
+
+      @media (min-width: $xxl) {
+        margin-bottom: 20px;
+      }
+    }
+
+    .otherTime {
+      font-size: 5rem;
+
+      @media (max-width: $xl) {
+        font-size: $mdH3;
+      }
+
+      @media (max-width: $md) {
+        font-size: $mdH3;
+      }
+
+      @media (max-width: $xs) {
+        font-size: $xsH3;
+      }
+
+
+    }
+
+    .flagSvg1 {
+      height: 4rem;
+      margin-right: 10px;
+
+      @media (max-width: $xl) {
+        height: $mdH4;
+      }
+      @media (max-width: $xs) {
+        height: $xsH4;
+      }
+
+
+    }
+  }
+}
+
+.refreshButton {
+  border: none;
+  background: transparent;
+  padding: 0px 10px 0px 10px;
+  margin: 0px;
+  text-align: center;
+  cursor: "pointer";
+  color: inherit;
+}
+
+/* === CONTAINER 1 END === */
+
+/* === CONTAINER 2 START === */
+.container-2 {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+
+  /* height: 100vh; */
+  @media (max-width: $md) {
+    flex-direction: column;
+    // width: 100%;
+  }
+}
+
+.container-2-left-pane,
+.container-2-right-pane {
+  width: 50%;
+  padding: 20px;
+  box-sizing: border-box;
+
+  @media (max-width: $md) {
+    width: 100%;
+  }
+}
+
+.container-2-left-pane {
+  /* border-right:1px solid gray ; */
+  display: flex;
+  flex-direction: column;
+}
+
+.pane-heading-view {
+  /* background-color: #282c34; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+
+  button {
+    font-size: 2rem;
+    background-color: transparent;
+    color: inherit;
+    border: 1px solid white;
+    /* height: 100%; */
+  }
+}
+
+.container-2-right-pane {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 50vh;
+}
+
+.notes-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notes-textarea {
+  width: 100%;
+  min-height: 80vh;
+  flex: 1;
+  resize: none;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  font-size: 1.5rem;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.saved-alarms-view {
+  flex: 1;
+}
+
+.saved-alarm {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+
+  .saved-alarm-info {
+    /* width: 50%; */
+    padding-left: 20px;
+  }
+}
+
+.fullscreen-button-view {
+  /* background: #cccccc1b; */
+  display: flex;
+  justify-content: flex-end;
+}
+
+.fullscreen-button {
+  padding: 20px;
+  margin-left: 10px;
+  width: fit-content;
+  height: fit-content;
+  border: none;
+  border-radius: 6px;
+  /* background: #cccccc1b; */
+  background: transparent;
+  color: inherit;
+  cursor: "pointer";
+}
+
+.selected {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* === CONTAINER 2 END === */
+
+/* === ALARM RING VIEW START === */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.alarm-ring {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffcccc;
+  border: 5px solid red;
+  /* padding: 1rem; */
+  font-weight: bold;
+  animation: pulse 1s infinite;
+  color: #a00;
+  border-radius: 50px;
+  bottom: 1rem;
+  right: 1rem;
+  margin: 1rem;
+  padding: 3rem;
+}
+
+.stop-alarm-button {
+  border-radius: 50px;
+  height: 100px;
+  /* width: 150px; */
+  font-size: 2rem;
+  border: 2px solid red;
+  margin: 1rem;
+}
+
+/* === ALARM RING VIEW END === */
+
+/* === MODAL VIEW STYLES - START === */
+.day-selection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px;
+}
+
+.day-selection input[type="checkbox"] {
+  display: none;
+}
+
+.day-selection label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #000000;
+  /* blue border */
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  color: #322f2f;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+.day-selection input[type="checkbox"]:checked+label {
+  background-color: #eeff00;
+  /* blue fill */
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(163, 163, 163, 0.329);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  overflow: visible;
+}
+
+.modal-content {
+  background-color: #282c34;
+  width: 70%;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: fit-content;
+  /* max-width: 50vw; */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  /* <-- ensure it's not static */
+  overflow: visible;
+  /* <-- this allows dropdown to be visible */
+  z-index: 1001;
+  /* <-- higher than overlay */
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+
+  button {
+    height: 50px;
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+
+  button[type="delete"] {
+    background-color: rgb(239, 176, 176);
+  }
+
+  button[type="save"] {
+    background-color: rgb(176, 239, 184);
+  }
+
+  :disabled {
+    background-color: rgb(170, 171, 170) !important;
+  }
+}
+
+input {
+  margin: 10px;
+  padding: 10px;
+}
+
+select {
+  margin: 10px;
+  padding: 10px;
+}
+
+/* === MODAL VIEW STYLES - END === */
+
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 0.7rem;
+  cursor: pointer;
+  border: none;
+}

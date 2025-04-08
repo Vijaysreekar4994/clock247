@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 // import weatherCodeMap from './weatherCodes';
-// import './WeatherFeature.css';
+// import './WeatherFeature.scss';
 import { LuRefreshCw } from "react-icons/lu";
 // import { ReactComponent as IndiaFlag } from "./assets/in.svg"
 import weatherIconMap from './weatherIcons';
+import indoor from "./assets/indoor.png"
+import outdoor from "./assets/outdoor.png"
 
 
 
-const WeatherFeature = (props) => {
-  const { classes } = props
+
+const WeatherFeature = () => {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -72,23 +74,39 @@ const WeatherFeature = (props) => {
     setCoords((prev) => ({ ...prev, [name]: value }));
   };
 
-  if (loading) return <div className="weather-box" >Loading weather...</div>;
-  if (error) return <div className="weather-box" >{error}
-    <button onClick={() => { fetchWeather(); fetchLocationName() }} className={classes.weatherRefreshButton || ''}>
+  if (loading) return <div>Loading weather...</div>;
+  if (error) return <div>{error}
+    <button onClick={() => { fetchWeather(); fetchLocationName() }} className={'refreshButton'}>
       <LuRefreshCw />
     </button>
   </div>;
 
   return (
     <>
-      <div className={classes.widgetBig}>
-        <span className={classes.weatherIcon}>{weather.icon}</span>
-        <span className={classes.temperature} onClick={handleWeatherClick}>{weather.temp}&deg;C</span>
-        <button onClick={() => { fetchWeather(); fetchLocationName() }} className={classes.weatherRefreshButton || ''}>
-          <LuRefreshCw />
-        </button>
-        <br />
-        <span className={classes.feelsLike}>Feels like {weather.feelsLike}&deg;C</span>
+      {/* <div className={'insideWeatherWidget'} style={{ visibility: 'hidden' }}>
+        <img src={indoor} alt="Icon" 
+        className='weatherImage'
+        // width={100} height={100} 
+        />
+        <span className={'temperature'} onClick={handleWeatherClick}>{weather.temp}&deg;C</span>
+        <div className={'feelsLike'} style={{ visibility: 'hidden' }}>Feels like</div>
+        <div className={'feelsLike'} style={{ visibility: 'hidden' }}>00&deg;C</div>
+        <span className={'weatherDesciption'} style={{ visibility: 'hidden' }}>{'Clear'}
+        </span>
+      </div> */}
+      <div className={'outsideWeatherWidget'}>
+        <img src={outdoor} alt="Icon" 
+        className='weatherImage'
+        // width={100} height={100} 
+        />
+        <span className={'temperature'} onClick={handleWeatherClick}>{weather.temp}&deg;C</span>
+        <div className={'feelsLike'}>{'Feels '}like</div>
+        <div className={'feelsLike'}>{weather.feelsLike}&deg;C</div>
+        <span className={'weatherDesciption'}>{'Sunny'}
+          <button className={'refreshButton'} onClick={() => { fetchWeather(); fetchLocationName() }}>
+            <LuRefreshCw />
+          </button>
+        </span>
       </div>
       {showModal && (
         <div className="modal-overlay">
