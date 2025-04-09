@@ -1,8 +1,8 @@
 $xs: 460px;
-$sm: 700px;
-$md: 880px;
-$lg: 1024px;
-$xl: 1160px;
+$sm: 850px;
+$md: 1125px;
+$lg: 1250px;
+$xl: 1310px;
 $xxl: 1600px;
 
 $mdH1: 8rem;
@@ -31,6 +31,21 @@ $xsH5: 1rem;
   min-height: 100vh;
 }
 
+.refreshButton {
+  border: none;
+  background: transparent;
+  padding: 0px 10px 0px 10px;
+  margin: 0px;
+  text-align: center;
+  cursor: "pointer";
+  color: inherit;
+}
+
+.flexCol {
+  display: flex;
+  flex-direction: column;
+}
+
 /* === CONTAINER 1 START === */
 .container1 {
   display: flex;
@@ -39,6 +54,7 @@ $xsH5: 1rem;
   min-height: 100vh;
   flex-wrap: wrap;
   justify-content: space-between;
+  font-weight: bold;
 
   @media (min-width: $xxl) {
     min-height: 50vh;
@@ -58,9 +74,6 @@ $xsH5: 1rem;
     .time {
       font-size: 12rem;
 
-      @media (max-width: $lg) {
-        font-size: $mdH1;
-      }
       @media (max-width: $md) {
         font-size: $mdH1;
       }
@@ -89,31 +102,46 @@ $xsH5: 1rem;
 
   .temperatureWidgetContainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+
+    @media (max-width: $xl) {
+      width: 100%;
+      flex-direction: row;
+      align-items: center;
+    }
 
     @media (max-width: $md) {
       width: 100%;
       justify-content: center;
     }
 
-    @media (max-width: $xl) {
-      align-items: flex-start;
+    @media (max-width: $sm) {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @media (max-width: $xs) {
+      height: fit-content;
     }
 
     .base-weatherWidget {
       max-width: fit-content;
       max-height: fit-content;
       background-color: rgba(109, 109, 109, 0.36);
-      padding: 10px 20px;
+      padding: 0px 20px;
       border-radius: 10px;
       display: flex;
       align-items: center;
-      flex-direction: column;
+      flex-direction: row;
 
       .weatherImage {
         width: 5rem;
         height: 5rem;
+        text-align: center;
+        align-self: center;
 
         @media (max-width: $xs) {
           width: 3rem;
@@ -123,6 +151,7 @@ $xsH5: 1rem;
 
       .temperature {
         font-size: 5rem;
+        white-space: nowrap;
 
         @media (max-width: $md) {
           font-size: $mdH3;
@@ -135,6 +164,7 @@ $xsH5: 1rem;
 
       .feelsLike {
         font-size: 2.5rem;
+        margin-left: 20px;
 
         @media (max-width: $md) {
           font-size: $mdH5;
@@ -159,13 +189,16 @@ $xsH5: 1rem;
 
     .insideWeatherWidget {
       @extend .base-weatherWidget;
-      margin-right: 20px;
-      margin-top: 20px;
+      margin: 20px;
+
+      @media (max-width: $xs) {
+        margin: 0 0 20px 0;
+      }
     }
 
     .outsideWeatherWidget {
       @extend .base-weatherWidget;
-      margin-top: 20px;
+      // margin-top: 20px;
     }
   }
 
@@ -174,45 +207,34 @@ $xsH5: 1rem;
     flex-direction: row;
     margin-top: 20px;
     justify-content: space-between;
+    width: 100%;
+    gap: 20px;
 
-    @media (min-width: $xl) {
-      width: 100%;
-    }
-
-    @media (max-width: $xl) {
+    @media (max-width: $sm) {
+      display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-    }
-
-    @media (max-width: $md) {
-      width: 100%;
       align-items: center;
-    }
-
-    @media (min-width: $xxl) {
-      width: max-content;
-      flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
     }
 
     .otherTimeWidget {
       width: 350px;
-      max-height: max-content;
+      max-height: fit-content;
       background-color: rgba(109, 109, 109, 0.36);
       padding: 5px 0px;
       border-radius: 10px;
-      // margin-right: 10px;
+      // margin-bottom: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
 
-      @media (max-width: $xl) {
-        margin-bottom: 20px;
-      }
+      // @media (max-width: $xl) {
+      //   margin-bottom: 20px;
+      // }
 
-      @media (min-width: $xxl) {
-        margin-bottom: 20px;
-      }
+      // @media (min-width: $xxl) {
+      //   margin-bottom: 20px;
+      // }
     }
 
     .otherTime {
@@ -240,6 +262,7 @@ $xsH5: 1rem;
       @media (max-width: $xl) {
         height: $mdH4;
       }
+
       @media (max-width: $xs) {
         height: $xsH4;
       }
@@ -247,16 +270,6 @@ $xsH5: 1rem;
 
     }
   }
-}
-
-.refreshButton {
-  border: none;
-  background: transparent;
-  padding: 0px 10px 0px 10px;
-  margin: 0px;
-  text-align: center;
-  cursor: "pointer";
-  color: inherit;
 }
 
 /* === CONTAINER 1 END === */
@@ -267,114 +280,104 @@ $xsH5: 1rem;
   flex-direction: row;
   height: 100%;
 
-  /* height: 100vh; */
-  @media (max-width: $md) {
+  @media (max-width: $sm) {
     flex-direction: column;
-    // width: 100%;
   }
-}
 
-.container-2-left-pane,
-.container-2-right-pane {
-  width: 50%;
-  padding: 20px;
-  box-sizing: border-box;
+  .container-2-left-pane,
+  .container-2-right-pane {
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
 
-  @media (max-width: $md) {
+    @media (max-width: $md) {
+      width: 100%;
+    }
+  }
+
+  .container-2-left-pane {
+    /* border-right:1px solid gray ; */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pane-heading-view {
+    /* background-color: #282c34; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+
+    button {
+      font-size: 2rem;
+      background-color: transparent;
+      color: inherit;
+      border: 1px solid white;
+    }
+  }
+
+  .container-2-right-pane {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 50vh;
+  }
+
+  .notes-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .notes-textarea {
     width: 100%;
+    min-height: 80vh;
+    flex: 1;
+    resize: none;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    font-size: 1.5rem;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
   }
-}
 
-.container-2-left-pane {
-  /* border-right:1px solid gray ; */
-  display: flex;
-  flex-direction: column;
-}
+  .saved-alarms-view {
+    flex: 1;
+  }
 
-.pane-heading-view {
-  /* background-color: #282c34; */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 15px;
+  .saved-alarm {
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
 
-  button {
-    font-size: 2rem;
-    background-color: transparent;
+    .saved-alarm-info {
+      padding-left: 20px;
+    }
+  }
+
+  .fullscreen-button-view {
+    /* background: #cccccc1b; */
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .fullscreen-button {
+    padding: 20px;
+    margin-left: 10px;
+    width: fit-content;
+    height: fit-content;
+    border: none;
+    border-radius: 6px;
+    /* background: #cccccc1b; */
+    background: transparent;
     color: inherit;
-    border: 1px solid white;
-    /* height: 100%; */
+    cursor: "pointer";
   }
-}
-
-.container-2-right-pane {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 50vh;
-}
-
-.notes-section {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.notes-textarea {
-  width: 100%;
-  min-height: 80vh;
-  flex: 1;
-  resize: none;
-  overflow-wrap: break-word;
-  white-space: pre-wrap;
-  font-size: 1.5rem;
-  padding: 10px;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.saved-alarms-view {
-  flex: 1;
-}
-
-.saved-alarm {
-  border: 1px solid lightgray;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  padding: 5px 10px;
-  display: flex;
-  align-items: center;
-  /* justify-content: space-between; */
-
-  .saved-alarm-info {
-    /* width: 50%; */
-    padding-left: 20px;
-  }
-}
-
-.fullscreen-button-view {
-  /* background: #cccccc1b; */
-  display: flex;
-  justify-content: flex-end;
-}
-
-.fullscreen-button {
-  padding: 20px;
-  margin-left: 10px;
-  width: fit-content;
-  height: fit-content;
-  border: none;
-  border-radius: 6px;
-  /* background: #cccccc1b; */
-  background: transparent;
-  color: inherit;
-  cursor: "pointer";
-}
-
-.selected {
-  font-weight: bold;
-  text-decoration: underline;
 }
 
 /* === CONTAINER 2 END === */
@@ -535,4 +538,14 @@ button {
   border-radius: 0.7rem;
   cursor: pointer;
   border: none;
+
+  @media (max-width: $lg) {
+    font-size: 1.5rem !important;
+  }
+  // @media (max-width: $sm) {
+  //   font-size: 1.5rem !important;
+  // }
+  @media (max-width: $xs) {
+    font-size: 1rem !important;
+  }
 }

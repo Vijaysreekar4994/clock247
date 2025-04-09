@@ -83,30 +83,35 @@ const WeatherFeature = () => {
 
   return (
     <>
-      {/* <div className={'insideWeatherWidget'} style={{ visibility: 'hidden' }}>
+      <div className={'insideWeatherWidget'}>
+        <div className='flexCol'>
         <img src={indoor} alt="Icon" 
         className='weatherImage'
-        // width={100} height={100} 
         />
-        <span className={'temperature'} onClick={handleWeatherClick}>{weather.temp}&deg;C</span>
-        <div className={'feelsLike'} style={{ visibility: 'hidden' }}>Feels like</div>
-        <div className={'feelsLike'} style={{ visibility: 'hidden' }}>00&deg;C</div>
-        <span className={'weatherDesciption'} style={{ visibility: 'hidden' }}>{'Clear'}
-        </span>
-      </div> */}
+          <span className={'temperature'} onClick={handleWeatherClick}>
+            {/* {weather.temp}&deg;C */}----
+          </span>
+        </div>
+      </div>
       <div className={'outsideWeatherWidget'}>
-        <img src={outdoor} alt="Icon" 
-        className='weatherImage'
-        // width={100} height={100} 
-        />
-        <span className={'temperature'} onClick={handleWeatherClick}>{weather.temp}&deg;C</span>
-        <div className={'feelsLike'}>{'Feels '}like</div>
-        <div className={'feelsLike'}>{weather.feelsLike}&deg;C</div>
-        <span className={'weatherDesciption'}>{'Sunny'}
-          <button className={'refreshButton'} onClick={() => { fetchWeather(); fetchLocationName() }}>
-            <LuRefreshCw />
-          </button>
-        </span>
+        <div className='flexCol'>
+          <img src={outdoor} alt="Icon"
+            className='weatherImage'
+          />
+          <span className={'temperature'} onClick={handleWeatherClick}>
+            {weather.temp}
+            &deg;C
+          </span>
+        </div>
+        <div className='flexCol'>
+          <span className={'feelsLike'}>Feels like {weather.feelsLike}
+          &deg;C</span>
+          <span className={'feelsLike'}>{'Light freezing drizzle'}
+            <button className={'refreshButton'} onClick={() => { fetchWeather(); fetchLocationName() }}>
+              <LuRefreshCw />
+            </button>
+          </span>
+        </div>
       </div>
       {showModal && (
         <div className="modal-overlay">
