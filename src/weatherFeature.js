@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import weatherCodeMap from './weatherCodes';
+import weatherCodes from './weatherCodes';
 // import './WeatherFeature.scss';
 import { LuRefreshCw } from "react-icons/lu";
 // import { ReactComponent as IndiaFlag } from "./assets/in.svg"
@@ -29,7 +29,8 @@ const WeatherFeature = () => {
         setWeather({
           temp: Math.round(data.current.temperature_2m),
           feelsLike: Math.round(data.current.apparent_temperature),
-          icon: weatherIconMap[data.current.is_day ? 'day' : 'night'][data.current.weathercode],
+          // icon: weatherIconMap[data.current.is_day ? 'day' : 'night'][data.current.weathercode],
+          code: weatherCodes[data.current.weathercode],
           isDay: data.current.is_day === 1
         });
       } else {
@@ -106,7 +107,8 @@ const WeatherFeature = () => {
         <div className='flexCol'>
           <span className={'feelsLike'}>Feels like {weather.feelsLike}
           &deg;C</span>
-          <span className={'feelsLike'}>{'Light freezing drizzle'}
+          <span className={'feelsLike'}>
+            {weather.code}
             <button className={'refreshButton'} onClick={() => { fetchWeather(); fetchLocationName() }}>
               <LuRefreshCw />
             </button>
