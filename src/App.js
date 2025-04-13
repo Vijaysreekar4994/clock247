@@ -16,7 +16,7 @@ import WeatherFeature from './weatherFeature';
 import { ReactComponent as IndiaFlag } from "./assets/in.svg"
 import { ReactComponent as USAFlag } from "./assets/us.svg"
 import { ReactComponent as DubaiFlag } from "./assets/ae.svg"
-
+// import CustomHouseIcon from './assets/house';
 
 
 const alarmSounds = [
@@ -343,10 +343,14 @@ function App() {
     if (isSameSet(days, weekend)) return "Weekend";
     return days.join(', ');
   };
+    // const tempText = '88'
   return (
     <div className='App'>
       <audio ref={alarmAudioRef} preload="auto" />
       <div className='content'>
+        {/* <div style={{ margin: '20px', position: 'absolute' }}>
+          <CustomHouseIcon text={`${tempText}°C`} />
+        </div> */}
         {isModalOpen && (
           <div className="modal-overlay">
             <div className="modal-content">

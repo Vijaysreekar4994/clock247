@@ -6,6 +6,7 @@ import { LuRefreshCw } from "react-icons/lu";
 import weatherIconMap from './weatherIcons';
 import indoor from "./assets/indoor.png"
 import outdoor from "./assets/outdoor.png"
+import CustomHouseIcon from './assets/house';
 
 
 
@@ -81,32 +82,38 @@ const WeatherFeature = () => {
       <LuRefreshCw />
     </button>
   </div>;
-
+  // const tempText = '88'
   return (
     <>
-      <div className={'insideWeatherWidget'}>
-        <div className='flexCol'>
-        <img src={indoor} alt="Icon" 
-        className='weatherImage'
-        />
-          <span className={'temperature'} onClick={handleWeatherClick}>
-            {/* {weather.temp}&deg;C */}----
-          </span>
-        </div>
-      </div>
-      <div className={'outsideWeatherWidget'}>
-        <div className='flexCol'>
-          <img src={outdoor} alt="Icon"
+      {/* <div className={'insideWeatherWidget'}> */}
+      {/* <div className='flexCol'>
+          <img src={indoor} alt="Icon"
             className='weatherImage'
           />
           <span className={'temperature'} onClick={handleWeatherClick}>
+            {weather.temp}&deg;C
+          </span>
+        </div> */}
+      {/* <div style={{marginRight:'20px', position:'absolute'}}>
+        <CustomHouseIcon text={`${tempText}°C`} />
+      </div> */}
+      {/* </div> */}
+      <div className={'outsideWeatherWidget'}>
+        <div className='flexCol'>
+          {/* <img src={outdoor} alt="Icon"
+            className='weatherImage'
+          /> */}
+          <span 
+          className={'date'}
+          // className={'temperature'}
+           onClick={handleWeatherClick}>
             {weather.temp}
             &deg;C
           </span>
         </div>
         <div className='flexCol'>
           <span className={'feelsLike'}>Feels like {weather.feelsLike}
-          &deg;C</span>
+            &deg;C</span>
           <span className={'feelsLike'}>
             {weather.code}
             <button className={'refreshButton'} onClick={() => { fetchWeather(); fetchLocationName() }}>

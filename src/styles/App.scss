@@ -60,6 +60,22 @@ $xsH5: 1rem;
     min-height: 50vh;
   }
 
+  .date {
+    font-size: 6rem;
+
+    @media (max-width: $md) {
+      font-size: $mdH2;
+    }
+
+    @media (max-width: $sm) {
+      font-size: $mdH3;
+    }
+
+    @media (max-width: $xs) {
+      font-size: $xsH2;
+    }
+  }
+
   .timeDateContainer {
     display: flex;
     flex-direction: column;
@@ -83,21 +99,6 @@ $xsH5: 1rem;
       }
     }
 
-    .date {
-      font-size: 6rem;
-
-      @media (max-width: $md) {
-        font-size: $mdH2;
-      }
-
-      @media (max-width: $sm) {
-        font-size: $mdH3;
-      }
-
-      @media (max-width: $xs) {
-        font-size: $xsH2;
-      }
-    }
   }
 
   .temperatureWidgetContainer {
@@ -127,15 +128,31 @@ $xsH5: 1rem;
       height: fit-content;
     }
 
-    .base-weatherWidget {
+    // .insideWeatherWidget {
+    //   // margin: 0 20px;
+
+    //   // @media (max-width: $xs) {
+    //   //   margin: 0 0 20px 0;
+    //   // }
+    // }
+
+    .outsideWeatherWidget {
       max-width: fit-content;
       max-height: fit-content;
-      background-color: rgba(109, 109, 109, 0.36);
+      // background-color: rgba(109, 109, 109, 0.36);
+      border: 2px solid gray;
       padding: 0px 20px;
       border-radius: 10px;
       display: flex;
       align-items: center;
       flex-direction: row;
+       // This clip-path creates chamfered corners (not round)
+  // clip-path: polygon(
+  //   10% 0%, 90% 0%,
+  //   100% 10%, 100% 90%,
+  //   90% 100%, 10% 100%,
+  //   0% 90%, 0% 10%
+  // );
 
       .weatherImage {
         width: 5rem;
@@ -150,7 +167,7 @@ $xsH5: 1rem;
       }
 
       .temperature {
-        font-size: 5rem;
+        font-size: $mdH2;
         white-space: nowrap;
 
         @media (max-width: $md) {
@@ -174,31 +191,6 @@ $xsH5: 1rem;
           font-size: $xsH4;
         }
       }
-
-      // .weatherDesciption {
-      //   max-width: 150px;
-      //   font-size: $mdH6;
-      //   text-wrap: wrap;
-
-      //   @media (max-width: $xs) {
-      //     font-size: $xsH5;
-      //   }
-      // }
-
-    }
-
-    .insideWeatherWidget {
-      @extend .base-weatherWidget;
-      margin: 20px;
-
-      @media (max-width: $xs) {
-        margin: 0 0 20px 0;
-      }
-    }
-
-    .outsideWeatherWidget {
-      @extend .base-weatherWidget;
-      // margin-top: 20px;
     }
   }
 
@@ -217,17 +209,27 @@ $xsH5: 1rem;
       justify-content: flex-start;
       margin-top: 20px;
     }
+    @media (min-width: $xxl) {
+      margin-top: 20px;
+    }
 
     .otherTimeWidget {
       width: 350px;
       max-height: fit-content;
-      background-color: rgba(109, 109, 109, 0.36);
+      // background-color: rgba(109, 109, 109, 0.36);
       padding: 5px 0px;
       border-radius: 10px;
       // margin-bottom: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
+      // border: 2px solid gray;
+      // clip-path: polygon(
+      //   10% 0%, 90% 0%,
+      //   100% 10%, 100% 90%,
+      //   90% 100%, 10% 100%,
+      //   0% 90%, 0% 10%
+      // );
 
       // @media (max-width: $xl) {
       //   margin-bottom: 20px;
