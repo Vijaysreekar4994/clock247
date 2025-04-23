@@ -11,7 +11,7 @@ const ExchangeRate = () => {
   useEffect(() => {
     const fetchExchangeRate = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/exchange-rate`);
+        const response = await fetch(`/api/exchange-rate`);
         const data = await response.json();
         setRate(data.rate);
       } catch (err) {
