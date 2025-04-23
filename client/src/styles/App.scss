@@ -1,0 +1,595 @@
+$xxl: 1600px;
+$xl: 1310px;
+$lg: 1250px;
+$md: 1125px;
+$md1: 950px;
+$sm: 850px;
+$sm1: 750px;
+$xs: 550px;
+$xs1: 460px;
+
+$mdH1: 8rem;
+$mdH2: 6rem;
+$mdH3: 4rem;
+$mdH4: 3rem;
+$mdH5: 2rem;
+$mdH6: 1.5rem;
+$mdH7: 1rem;
+
+$xsH1: 5rem;
+$xsH2: 3rem;
+$xsH3: 2rem;
+$xsH4: 1.5rem;
+$xsH5: 1rem;
+
+.App {
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.refreshButton {
+  border: none;
+  background: transparent;
+  padding: 0px 10px 0px 10px;
+  margin: 0px;
+  text-align: center;
+  cursor: "pointer";
+  color: inherit;
+}
+
+.flexCol {
+  display: flex;
+  flex-direction: column;
+}
+
+/* === CONTAINER 1 START === */
+.container1 {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  padding: 0px 20px;
+  min-height: 100vh;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-weight: bold;
+
+  @media (min-width: $xxl) {
+    min-height: 50vh;
+  }
+
+  .exchangeRate {
+    position: absolute; // Use absolute positioning within container1
+    top: 0; // Fix to the top
+    right: 0; // Fix to the right
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    padding: 10px 20px;
+    border-left: 2px solid gray;
+    border-bottom: 2px solid gray;
+    font-size: $mdH4;
+    border-bottom-left-radius: 20px;
+
+    @media (max-width: $sm) {
+      font-size: $mdH5;
+    }
+
+    @media (max-width: $xs1) {
+      font-size: $xsH4;
+    }
+  }
+
+  .date {
+    font-size: 6rem;
+
+    @media (max-width: $md) {
+      font-size: $mdH2;
+    }
+
+    @media (max-width: $sm) {
+      font-size: $mdH3;
+    }
+
+    @media (max-width: $xs1) {
+      font-size: $xsH2;
+    }
+  }
+
+  .timeDateContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: $xl) {
+      display: flex;
+      width: 100%;
+    }
+
+    .time {
+      font-size: 12rem;
+
+      @media (max-width: $md) {
+        font-size: $mdH1;
+      }
+
+      @media (max-width: $xs1) {
+        font-size: $xsH1;
+      }
+    }
+
+  }
+
+  .temperatureWidgetContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: $xl) {
+      width: 100%;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    @media (max-width: $md) {
+      width: 100%;
+      justify-content: center;
+    }
+
+    @media (max-width: $sm) {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @media (max-width: $xs1) {
+      height: fit-content;
+    }
+
+    // .insideWeatherWidget {
+    //   // margin: 0 20px;
+
+    //   // @media (max-width: $xs1) {
+    //   //   margin: 0 0 20px 0;
+    //   // }
+    // }
+
+    .outsideWeatherWidget {
+      max-width: fit-content;
+      max-height: fit-content;
+      // background-color: rgba(109, 109, 109, 0.36);
+      border: 2px solid gray;
+      padding: 0px 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+       // This clip-path creates chamfered corners (not round)
+  // clip-path: polygon(
+  //   10% 0%, 90% 0%,
+  //   100% 10%, 100% 90%,
+  //   90% 100%, 10% 100%,
+  //   0% 90%, 0% 10%
+  // );
+
+      .weatherImage {
+        width: 5rem;
+        height: 5rem;
+        text-align: center;
+        align-self: center;
+
+        @media (max-width: $xs1) {
+          width: 3rem;
+          height: 3rem;
+        }
+      }
+
+      // .temperature {
+      //   font-size: $mdH2;
+      //   white-space: nowrap;
+
+      //   @media (max-width: $md) {
+      //     font-size: $mdH3;
+      //   }
+
+      //   @media (max-width: $xs1) {
+      //     font-size: $xsH3;
+      //   }
+      //   @media (max-width: $xs) {
+      //     font-size: $xsH2;
+      //   }
+      // }
+
+      .feelsLike {
+        font-size: 3.5rem;
+        margin-left: 20px;
+
+        @media (max-width: $md) {
+          font-size: $mdH4;
+        }
+
+        @media (max-width: $xs1) {
+          font-size: $xsH4;
+        }
+        @media (max-width: $xs) {
+          font-size: $xsH3;
+        }
+      }
+    }
+  }
+
+  .otherTimesContainer {
+    display: flex;
+    flex-direction: row;
+    // margin-top: 20px;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+
+    @media (max-width: $md1) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      margin-top: 20px;
+    }
+    @media (min-width: $xxl) {
+      margin-top: 20px;
+    }
+
+    .otherTimeWidget {
+      width: 270px;
+      max-height: fit-content;
+      // background-color: rgba(109, 109, 109, 0.36);
+      padding: 5px 0px;
+      border-radius: 10px;
+      // margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      // border: 2px solid gray;
+      // clip-path: polygon(
+      //   10% 0%, 90% 0%,
+      //   100% 10%, 100% 90%,
+      //   90% 100%, 10% 100%,
+      //   0% 90%, 0% 10%
+      // );
+
+      @media (min-width: $xl) {
+        width: 300px;
+      }
+      @media (max-width: $xl) {
+        width: 240px;
+      }
+      
+      @media (max-width: $xs1) {
+        width: 150px;
+      }
+
+      // @media (min-width: $xxl) {
+      //   margin-bottom: 20px;
+      // }
+    }
+
+    .otherTime {
+      font-size: 5rem;
+
+      @media (max-width: $xl) {
+        font-size: $mdH3;
+      }
+
+      @media (max-width: $md) {
+        font-size: $mdH3;
+      }
+
+      @media (max-width: $xs1) {
+        font-size: $xsH3;
+      }
+
+
+    }
+
+    .flagSvg1 {
+      height: 4rem;
+      margin-right: 10px;
+
+      @media (max-width: $xl) {
+        height: $mdH4;
+      }
+
+      @media (max-width: $xs1) {
+        height: $xsH4;
+      }
+
+
+    }
+  }
+}
+
+/* === CONTAINER 1 END === */
+
+/* === CONTAINER 2 START === */
+.container-2 {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+
+  @media (max-width: $sm) {
+    flex-direction: column;
+  }
+
+  .container-2-left-pane,
+  .container-2-right-pane {
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+
+    @media (max-width: $md) {
+      width: 100%;
+    }
+  }
+
+  .container-2-left-pane {
+    /* border-right:1px solid gray ; */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pane-heading-view {
+    /* background-color: #282c34; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+
+    button {
+      font-size: 2rem;
+      background-color: transparent;
+      color: inherit;
+      border: 1px solid white;
+    }
+  }
+
+  .container-2-right-pane {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 50vh;
+  }
+
+  .notes-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .notes-textarea {
+    width: 100%;
+    min-height: 80vh;
+    flex: 1;
+    resize: none;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    font-size: 1.5rem;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .saved-alarms-view {
+    flex: 1;
+  }
+
+  .saved-alarm {
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+
+    .saved-alarm-info {
+      padding-left: 20px;
+    }
+  }
+
+  .fullscreen-button-view {
+    /* background: #cccccc1b; */
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .fullscreen-button {
+    padding: 20px;
+    margin-left: 10px;
+    width: fit-content;
+    height: fit-content;
+    border: none;
+    border-radius: 6px;
+    /* background: #cccccc1b; */
+    background: transparent;
+    color: inherit;
+    cursor: "pointer";
+  }
+}
+
+/* === CONTAINER 2 END === */
+
+/* === ALARM RING VIEW START === */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.alarm-ring {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffcccc;
+  border: 5px solid red;
+  /* padding: 1rem; */
+  font-weight: bold;
+  animation: pulse 1s infinite;
+  color: #a00;
+  border-radius: 50px;
+  bottom: 1rem;
+  right: 1rem;
+  margin: 1rem;
+  padding: 3rem;
+}
+
+.stop-alarm-button {
+  border-radius: 50px;
+  height: 100px;
+  /* width: 150px; */
+  font-size: 2rem;
+  border: 2px solid red;
+  margin: 1rem;
+}
+
+/* === ALARM RING VIEW END === */
+
+/* === MODAL VIEW STYLES - START === */
+.day-selection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px;
+}
+
+.day-selection input[type="checkbox"] {
+  display: none;
+}
+
+.day-selection label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #000000;
+  /* blue border */
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  color: #322f2f;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+.day-selection input[type="checkbox"]:checked+label {
+  background-color: #eeff00;
+  /* blue fill */
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(163, 163, 163, 0.329);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  overflow: visible;
+}
+
+.modal-content {
+  background-color: #282c34;
+  width: 70%;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: fit-content;
+  /* max-width: 50vw; */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  /* <-- ensure it's not static */
+  overflow: visible;
+  /* <-- this allows dropdown to be visible */
+  z-index: 1001;
+  /* <-- higher than overlay */
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+
+  button {
+    height: 50px;
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+
+  button[type="delete"] {
+    background-color: rgb(239, 176, 176);
+  }
+
+  button[type="save"] {
+    background-color: rgb(176, 239, 184);
+  }
+
+  :disabled {
+    background-color: rgb(170, 171, 170) !important;
+  }
+}
+
+input {
+  margin: 10px;
+  padding: 10px;
+}
+
+select {
+  margin: 10px;
+  padding: 10px;
+}
+
+/* === MODAL VIEW STYLES - END === */
+
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 0.7rem;
+  cursor: pointer;
+  border: none;
+
+  @media (max-width: $lg) {
+    font-size: 1.5rem !important;
+  }
+  // @media (max-width: $sm) {
+  //   font-size: 1.5rem !important;
+  // }
+  @media (max-width: $xs1) {
+    font-size: 1rem !important;
+  }
+}
