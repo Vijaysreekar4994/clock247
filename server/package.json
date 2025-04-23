@@ -14,7 +14,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "puppeteer": "^24.7.0"
+    "puppeteer": "^24.7.1"
   },
   "devDependencies": {
     "fs": "^0.0.1-security",
