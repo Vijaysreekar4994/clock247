@@ -20,8 +20,7 @@ app.get('/api/exchange-rate', async (req, res) => {
     // console.log('Launching Puppeteer...');
     const browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      executablePath: puppeteer.executablePath()
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     // console.log('Browser launched');
     
