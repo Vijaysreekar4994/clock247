@@ -1,15 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import weatherCodes from './weatherCodes';
-// import './WeatherFeature.scss';
 import { LuRefreshCw } from "react-icons/lu";
-// import { ReactComponent as IndiaFlag } from "./assets/in.svg"
-// import weatherIconMap from './weatherIcons';
-// import indoor from "./assets/indoor.png"
-// import outdoor from "./assets/outdoor.png"
-// import CustomHouseIcon from './assets/house';
-
-
-
 
 const WeatherFeature = () => {
   const [weather, setWeather] = useState(null);

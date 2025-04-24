@@ -7,13 +7,14 @@ import {
 const ExchangeRate = () => {
   const [rate, setRate] = useState(null);
   const [error, setError] = useState(null);
-
+const url = process.env.NODE_ENV === 'production' ? '/api/exchange-rate' : 'http://localhost:4000/api/exchange-rate';
   useEffect(() => {
     const fetchExchangeRate = async () => {
       try {
-        const response = await fetch(`/api/exchange-rate`);
+        const response = await fetch(url);
         const data = await response.json();
-        setRate(data.rate);
+        setRate(data.rate.toFixed(2)); // Round to 2 decimal places
+        setError(null); 
       } catch (err) {
         setError('Failed to fetch exchange rate');
       }
@@ -29,14 +30,14 @@ const ExchangeRate = () => {
             // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (error) return <div className={'exchangeRate'}>{error}</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <div className={'exchangeRate'}>
       {rate ? (
         <div>EUR 
         {/* <PiCurrencyEur /> */}
-            <BsArrowRight size={30} />
+            {/* <BsArrowRight size={30} /> */}=
             <span
               style={{ marginLeft: '8px' }}
             >{rate}</span> INR
