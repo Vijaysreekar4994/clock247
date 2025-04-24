@@ -22,13 +22,21 @@ app.get('/api/exchange-rate', async (req, res) => {
       headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
-    // console.log('Browser launched');
+    console.log('Browser launched');
     
     const page = await browser.newPage();
     // console.log('Page opened');
     
-    await page.goto('https://www.xe.com/send-money/', { waitUntil: 'networkidle2' });
-    // console.log('Page loaded');
+    async function safeGoto(page, url) {
+      try {
+        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
+      } catch (error) {
+        console.error('First attempt failed, retrying...');
+        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
+      }
+    }
+    await safeGoto(page, 'https://www.xe.com/send-money/');
+    console.log('Page loaded');
 
     // Helper: Type and Confirm Dropdown Option
     async function typeAndSelect(selector, text) {
