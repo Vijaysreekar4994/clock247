@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-# Install server dependencies
+# Install backend dependencies
 cd server
 npm install
 
-# Install client dependencies and build React
+# Install frontend dependencies and build React app
 cd ../client
 npm install
 npm run build
 
-# Go back to server and force Puppeteer to download Chromium
+# Back to server and force Puppeteer to download Chromium
 cd ../server
 npx puppeteer install
