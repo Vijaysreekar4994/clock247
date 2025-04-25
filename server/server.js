@@ -49,7 +49,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(clientBuildPath));
 
   if (fs.existsSync(indexPath)) {
-    app.get('*', (req, res, next) => {
+    app.get('/', (req, res, next) => {
       try {
         res.sendFile(indexPath);
       } catch (error) {
