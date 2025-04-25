@@ -2,8 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import fetch from 'node-fetch';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
+import fs from 'fs';
 
 dotenv.config();
 
@@ -36,18 +36,22 @@ app.get('/api/exchange-rate', async (req, res) => {
   }
 });
 
-// Serve React Build in Production
 if (process.env.NODE_ENV === 'production') {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = path.dirname(__filename);
-  const clientBuildPath = path.join(__dirname, '../client/build');
+  const indexPath = path.join(clientBuildPath, 'index.html');
 
-  app.use(express.static(clientBuildPath));
-
-  // Wildcard route to serve React for any non-API route
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(clientBuildPath, 'index.html'));
-  });
+  // Check if index.html exists before adding the wildcard
+  if (fs.existsSync(indexPath)) {
+    app.get('*', (req, res, next) => {
+      try {
+        res.sendFile(indexPath);
+      } catch (error) {
+        console.error('Failed to send index.html:', error);
+        next(error);
+      }
+    });
+  } else {
+    console.warn('⚠️ index.html does not exist at expected path:', indexPath);
+  }
 }
 
 app.listen(PORT, () => {
