@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import {
-     BsArrowRight
-     } from "react-icons/bs";
+// import {
+//      BsArrowRight
+//      } from "react-icons/bs";
 //   import { PiCurrencyInr, PiCurrencyEur } from "react-icons/pi";
 
 const ExchangeRate = () => {
